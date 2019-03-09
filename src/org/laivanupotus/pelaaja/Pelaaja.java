@@ -32,16 +32,17 @@ public class Pelaaja {
 			System.out.println("Anna aloitusruutu");
 			aloitusruutu = scanner.nextLine();
 			System.out.println("Anna lopetusruutu");
-			aloitusruutu = scanner.nextLine();
+			lopetusruutu = scanner.nextLine();
 			
-			if (!SyoteApu.tarkistaSyote(aloitusruutu) || !SyoteApu.tarkistaSyote(lopetusruutu)) {
+			if (SyoteApu.tarkistaSyote(aloitusruutu) && SyoteApu.tarkistaSyote(lopetusruutu)) break;
+				
+			else {
 				System.out.println("Väärän tyyppinen syöte. Anna ruudut muodossa 'A1'");
 				System.out.println();
 				
 				//Tarkasta pituus?
 			}
-			
-			else break;
+				
 		}
 		
 		int[] alkuKoordinaatti = SyoteApu.muunnaKoordinaateiksi(aloitusruutu);

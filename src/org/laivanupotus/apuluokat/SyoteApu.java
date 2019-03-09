@@ -24,7 +24,8 @@ public class SyoteApu {
 			if (s1.equals(s.substring(1, 2).toLowerCase())) onkoNumero = true;
 		}
 		
-		return true;
+		if (onkoKirjain && onkoNumero) return true;
+		else return false;
 	}
 	
 	//Muuttaa syöteruudun tyypistä String tyyppiin int[]. Esim "A0" -> {0,0}
