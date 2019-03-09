@@ -5,6 +5,9 @@ import org.laivanupotus.logiikka.Lauta;
 
 public class SyoteApu {
 	
+	//Tarkistaa onko syöte muotoa kirjainNumero kirjainNumero, esim "A1 A1"
+	//Kantsii tehä uusiks sit ku ollaan päätetty missä muodossa syöte oikeesti on
+	//Tä on aika sotku, regexillä parempi :D
 	public static boolean tarkistaSyote(String s){
 		String osa1 = s.substring(0, 1).toLowerCase();
 		String osa2 = s.substring(1, 2).toLowerCase();
@@ -30,10 +33,12 @@ public class SyoteApu {
 			if (s1.equals(osa5)) onkoNumero2 = true;
 		}
 		
-		if (onkoNumero && onkoKirjain && osa3.equals(" ")) return true;
+		if (onkoNumero && onkoKirjain && onkoNumero2 && onkoKirjain2 && osa3.equals(" ")) return true;
 		else return false;
 	}
 	
+	//Muuttaa numerot a-j numeroiksi 0-9
+	//Syöte yksi kirjain
 	public static int muunnaNumeroksi(String s) {
 		int palautus = 0;
 		if (s.toLowerCase().equals("a")) palautus = 0;

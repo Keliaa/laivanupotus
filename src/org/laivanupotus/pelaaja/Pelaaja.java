@@ -20,6 +20,8 @@ public class Pelaaja {
 	public int[][] otaSyote() {
 		
 		//Paljon sotkusta koodia
+		//Tässä siis syötteen pitää olla muotoa "A1 A1", eli kirjainNumero kirjainNumero
+		//Tä oli vähän testailua tohon kirjain->numero muunnokseen, muutetaan selkeemmäks varsinaiseen peliin
 		
 		String koordinaatit = "";
 		
