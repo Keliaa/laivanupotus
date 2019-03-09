@@ -5,6 +5,8 @@ import org.laivanupotus.pelaaja.Pelaaja;
 
 public class Paaluokka {
 	
+	//testi :D
+	
 	public static void main(String[] args) {
 		//luodaan lauta
 		Lauta lauta = new Lauta();
