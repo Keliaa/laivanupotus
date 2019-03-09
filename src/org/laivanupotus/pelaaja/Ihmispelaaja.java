@@ -27,15 +27,17 @@ public class Ihmispelaaja extends Pelaaja {
 			System.out.println("Anna lopetusruutu");
 			lopetusruutu = scanner.nextLine();
 				
-			if (SyoteApu.tarkistaSyote(aloitusruutu) && SyoteApu.tarkistaSyote(lopetusruutu)) break;
-					
-			else {
+			if (!SyoteApu.tarkistaSyote(aloitusruutu) || !SyoteApu.tarkistaSyote(lopetusruutu)) {
 				System.out.println("Väärän tyyppinen syöte. Anna ruudut muodossa 'A1'");
 				System.out.println();
-					
-				//Tarkasta pituus?
+			} 
+			
+			else if (!SyoteApu.tarkistaPituus(SyoteApu.muunnaKoordinaateiksi(aloitusruutu), SyoteApu.muunnaKoordinaateiksi(lopetusruutu), laivanPituus)){
+				System.out.println("Väärän pituinen tai epäsuora laiva!");
+				System.out.println();
 			}
-					
+				
+			else break;
 		}
 			
 		int[] alkuKoordinaatti = SyoteApu.muunnaKoordinaateiksi(aloitusruutu);
