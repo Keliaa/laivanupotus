@@ -1,3 +1,4 @@
+package org.laivanupotus.logiikka;
 
 public class Lauta {
 	private String lauta[][];

@@ -1,3 +1,6 @@
+package org.laivanupotus;
+
+import org.laivanupotus.pelaaja.Syote;
 
 public class Paaluokka {
 	

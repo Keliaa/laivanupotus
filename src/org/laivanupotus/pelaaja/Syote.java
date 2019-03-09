@@ -1,4 +1,7 @@
+package org.laivanupotus.pelaaja;
 import java.util.Scanner;
+
+import org.laivanupotus.logiikka.Lauta;
 
 public class Syote {
 	public static void otaSyote() {

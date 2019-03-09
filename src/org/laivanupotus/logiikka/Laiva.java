@@ -1,3 +1,4 @@
+package org.laivanupotus.logiikka;
 
 public class Laiva {
 	protected final int pituus;
