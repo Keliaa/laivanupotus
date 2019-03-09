@@ -1,31 +1,20 @@
 package org.laivanupotus.apuluokat;
-import java.util.Scanner;
-
-import org.laivanupotus.logiikka.Lauta;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class SyoteApu {
 	
 	//Tarkistaa onko syöte muotoa kirjainNumero, esim "A0"
-	//Vois tehdä paremmin regex?
-	public static boolean tarkistaSyote(String s){
-		if (s.length() != 2) return false;
+	public static boolean tarkistaSyote(String s){		
+		String regex = "^[a-jA-J0-9]+$";
 		
-		String[] numerot = new String[] {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9"};
-		String[] kirjaimet = new String[] {"a", "b", "c", "d", "e", "f", "g", "h", "i", "j"};
+		Pattern pattern = Pattern.compile(regex);
+		Matcher matcher = pattern.matcher(s);   
 		
-		boolean onkoNumero = false;
-		boolean onkoKirjain = false;
-		
-		for (String s1 : kirjaimet) {
-			if (s1.equals(s.substring(0, 1).toLowerCase())) onkoKirjain = true;
+		if(matcher.find()) {
+			return true;
 		}
-		
-		for (String s1 : numerot) {
-			if (s1.equals(s.substring(1, 2).toLowerCase())) onkoNumero = true;
-		}
-		
-		if (onkoKirjain && onkoNumero) return true;
-		else return false;
+		return false;
 	}
 	
 	//Muuttaa syöteruudun tyypistä String tyyppiin int[]. Esim "A0" -> {0,0}
