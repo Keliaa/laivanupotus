@@ -5,40 +5,38 @@ import org.laivanupotus.logiikka.Lauta;
 
 public class SyoteApu {
 	
-	//Tarkistaa onko syöte muotoa kirjainNumero kirjainNumero, esim "A1 A1"
-	//Kantsii tehä uusiks sit ku ollaan päätetty missä muodossa syöte oikeesti on
-	//Tä on aika sotku, regexillä parempi :D
+	//Tarkistaa onko syöte muotoa kirjainNumero, esim "A0"
+	//Vois tehdä paremmin regex?
 	public static boolean tarkistaSyote(String s){
-		String osa1 = s.substring(0, 1).toLowerCase();
-		String osa2 = s.substring(1, 2).toLowerCase();
-		String osa3 = s.substring(2, 3).toLowerCase();
-		String osa4 = s.substring(3, 4).toLowerCase();
-		String osa5 = s.substring(4, 5).toLowerCase();
+		if (s.length() != 2) return false;
 		
 		String[] numerot = new String[] {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9"};
 		String[] kirjaimet = new String[] {"a", "b", "c", "d", "e", "f", "g", "h", "i", "j"};
 		
 		boolean onkoNumero = false;
 		boolean onkoKirjain = false;
-		boolean onkoNumero2 = false;
-		boolean onkoKirjain2 = false;
 		
 		for (String s1 : kirjaimet) {
-			if (s1.equals(osa1)) onkoKirjain = true;
-			if (s1.equals(osa4)) onkoKirjain2 = true;
+			if (s1.equals(s.substring(0, 1).toLowerCase())) onkoKirjain = true;
 		}
 		
 		for (String s1 : numerot) {
-			if (s1.equals(osa2)) onkoNumero = true;
-			if (s1.equals(osa5)) onkoNumero2 = true;
+			if (s1.equals(s.substring(1, 2).toLowerCase())) onkoNumero = true;
 		}
 		
-		if (onkoNumero && onkoKirjain && onkoNumero2 && onkoKirjain2 && osa3.equals(" ")) return true;
-		else return false;
+		return true;
 	}
 	
-	//Muuttaa numerot a-j numeroiksi 0-9
-	//Syöte yksi kirjain
+	//Muuttaa syöteruudun tyypistä String tyyppiin int[]. Esim "A0" -> {0,0}
+	public static int[] muunnaKoordinaateiksi(String s) {
+		int[] palautus = new int[2];
+		palautus[0] = muunnaNumeroksi(s.substring(0,1));
+		palautus[1] = Integer.parseInt(s.substring(1, 2));
+		return palautus;
+	}
+	
+	//Muuttaa kirjaimen a-j numeroksi 0-9
+	//Syöte kirjain a-j tyyppiä String
 	public static int muunnaNumeroksi(String s) {
 		int palautus = 0;
 		if (s.toLowerCase().equals("a")) palautus = 0;

@@ -10,8 +10,10 @@ public class Paaluokka {
 		Lauta lauta = new Lauta();
 		//luodaan pelaaajat
 		Pelaaja pelaaja = new Pelaaja("Testipelaaja");
-		int[][] syote = pelaaja.otaSyote();
+		
+		int[][] syote = pelaaja.otaSyote(4);
 		lauta.asetaLaivaLaudalle(syote[0], syote[1]);
+		
 		lauta.tulostaLauta();
 		
 	}

@@ -17,40 +17,36 @@ public class Pelaaja {
 		return nimi;
 	}
 
-	public int[][] otaSyote() {
-		
-		//Paljon sotkusta koodia
-		//Tässä siis syötteen pitää olla muotoa "A1 A1", eli kirjainNumero kirjainNumero
-		//Tä oli vähän testailua tohon kirjain->numero muunnokseen, muutetaan selkeemmäks varsinaiseen peliin
-		
-		String koordinaatit = "";
+	//Pyytää käyttäjää asettamaan x pituisen laivan laudalle.
+	//Tarkistaa onko syöttämät ruudut oikeassa muodossa ja muuntaa ne numerokoordinaateiksi
+	//Palauttaa int[][] koordinaatit 
+	public int[][] otaSyote(int laivanPituus) {
+
+		String aloitusruutu = "";
+		String lopetusruutu = "";
 		
 		while(true) {
 			Scanner scanner = new Scanner(System.in);
-			System.out.println("Anna koordinaatit: ");
-			koordinaatit = scanner.nextLine();
-			if (!SyoteApu.tarkistaSyote(koordinaatit)) {
-				System.out.println("torun pahasti");
+			
+			System.out.println("Laivan pituus: " + laivanPituus);
+			System.out.println("Anna aloitusruutu");
+			aloitusruutu = scanner.nextLine();
+			System.out.println("Anna lopetusruutu");
+			aloitusruutu = scanner.nextLine();
+			
+			if (!SyoteApu.tarkistaSyote(aloitusruutu) || !SyoteApu.tarkistaSyote(lopetusruutu)) {
+				System.out.println("Väärän tyyppinen syöte. Anna ruudut muodossa 'A1'");
 				System.out.println();
 			}
+			
+			//if (!SyoteApu.tarkistaPituus(aloitusruutu, lopetusruutu))
+			
 			else break;
 		}
 		
-		System.out.println();
-		
-		int[] alkuKoordinaatti = new int[2];
-		int[] loppuKoordinaatti = new int[2];
-			 
-		alkuKoordinaatti[1] = Integer.parseInt(koordinaatit.substring(1, 2));
-		loppuKoordinaatti[1] = Integer.parseInt(koordinaatit.substring(4, 5));
-		alkuKoordinaatti[0] = SyoteApu.muunnaNumeroksi(koordinaatit.substring(0, 1));
-		loppuKoordinaatti[0] = SyoteApu.muunnaNumeroksi(koordinaatit.substring(3, 4));
-			 
-		System.out.println("Alku: " + alkuKoordinaatti[0] + ", " + alkuKoordinaatti[1]);
-		System.out.println("Loppu: " + loppuKoordinaatti[0] + ", " + loppuKoordinaatti[1]);
-		
+		int[] alkuKoordinaatti = SyoteApu.muunnaKoordinaateiksi(aloitusruutu);
+		int[] loppuKoordinaatti = SyoteApu.muunnaKoordinaateiksi(lopetusruutu);
 		return new int[][] {alkuKoordinaatti, loppuKoordinaatti};
-
 	}
 	
 }
