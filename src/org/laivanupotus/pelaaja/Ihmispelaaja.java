@@ -3,6 +3,7 @@ package org.laivanupotus.pelaaja;
 import java.util.Scanner;
 
 import org.laivanupotus.apuluokat.SyoteApu;
+import org.laivanupotus.logiikka.Lauta;
 
 public class Ihmispelaaja extends Pelaaja {
 
@@ -13,7 +14,7 @@ public class Ihmispelaaja extends Pelaaja {
 	//Pyyt‰‰ k‰ytt‰j‰‰ asettamaan x pituisen laivan laudalle.
 	//Tarkistaa onko syˆtt‰m‰t ruudut oikeassa muodossa ja muuntaa ne numerokoordinaateiksi
 	//Palauttaa int[][] koordinaatit 
-	public int[][] otaSyote(int laivanPituus, String laivanNimi) {
+	public int[][] otaSyote(int laivanPituus, String laivanNimi, Lauta lauta) {
 
 		String aloitusruutu = "";
 		String lopetusruutu = "";
@@ -34,6 +35,11 @@ public class Ihmispelaaja extends Pelaaja {
 			
 			else if (!SyoteApu.tarkistaPituus(SyoteApu.muunnaKoordinaateiksi(aloitusruutu), SyoteApu.muunnaKoordinaateiksi(lopetusruutu), laivanPituus)){
 				System.out.println("V‰‰r‰n pituinen tai ep‰suora laiva!");
+				System.out.println();
+			}
+			
+			else if (!lauta.tarkistaKoordinaatit(SyoteApu.muunnaKoordinaateiksi(aloitusruutu), SyoteApu.muunnaKoordinaateiksi(lopetusruutu))){
+				System.out.println("Ei p‰‰llekk‰isi‰ laivoja!");
 				System.out.println();
 			}
 				
