@@ -3,10 +3,7 @@ package org.laivanupotus.pelaaja;
 import java.util.Scanner;
 
 import org.laivanupotus.apuluokat.SyoteApu;
-<<<<<<< HEAD
 import org.laivanupotus.logiikka.Laiva;
-=======
->>>>>>> branch 'master' of https://github.com/Keliaa/laivanupotus.git
 import org.laivanupotus.logiikka.Lauta;
 
 public class Ihmispelaaja extends Pelaaja {
@@ -59,7 +56,7 @@ public class Ihmispelaaja extends Pelaaja {
 		int[] laivaPituudet = new int[] {4, 3, 3, 2, 2, 2, 1, 1, 1, 1};
 		String[] laivanNimet = new String[] {"Lentotukialus", "Risteilijä", "Risteilijä", "Hävittäjä", "Hävittäjä", "Hävittäjä", "Sukellusvene", "Sukellusvene", "Sukellusvene", "Sukellusvene"};
 		for (int i=0; i<laivaPituudet.length; i++) {
-			int[][] syote = otaSyote(laivaPituudet[i], laivanNimet[i]);
+			int[][] syote = otaSyote(laivaPituudet[i], laivanNimet[i], lauta);
 			Laiva laiva = new Laiva(laivanNimet[i], laivaPituudet[i], syote[0], syote[1]);
 			lauta.asetaLaivaLaudalle(laiva);
 		}

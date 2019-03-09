@@ -20,13 +20,13 @@ public class Tekoaly extends Pelaaja {
 		int[] laivaPituudet = new int[] {4, 3, 3, 2, 2, 2, 1, 1, 1, 1};
 		String[] laivanNimet = new String[] {"Lentotukialus", "Risteilijä", "Risteilijä", "Hävittäjä", "Hävittäjä", "Hävittäjä", "Sukellusvene", "Sukellusvene", "Sukellusvene", "Sukellusvene"};
 		for (int i=0; i<laivaPituudet.length; i++) {
-			Laiva laiva = new Laiva(laivanNimet[i], laivaPituudet[i], syote[0], syote[1]);
-			lauta.asetaLaivaLaudalle(laiva);
+			//Laiva laiva = new Laiva(laivanNimet[i], laivaPituudet[i], syote[0], syote[1]);
+			//lauta.asetaLaivaLaudalle(laiva);
 		}
 	}
 	
 	//arpoo laivojen sijainnit
-	public int[] arvoSijainnit(int laivanPituus) {
+	/*public int[] arvoSijainnit(int laivanPituus) {
 		Random rand = new Random();
 		int n = rand.nextInt(10);
 		
@@ -37,6 +37,6 @@ public class Tekoaly extends Pelaaja {
 		
 		
 		return new int[] {n, n2};
-	}
+	}*/
 
 }
