@@ -13,7 +13,7 @@ public class Ihmispelaaja extends Pelaaja {
 	//Pyytää käyttäjää asettamaan x pituisen laivan laudalle.
 	//Tarkistaa onko syöttämät ruudut oikeassa muodossa ja muuntaa ne numerokoordinaateiksi
 	//Palauttaa int[][] koordinaatit 
-	public int[][] otaSyote(int laivanPituus) {
+	public int[][] otaSyote(int laivanPituus, String laivanNimi) {
 
 		String aloitusruutu = "";
 		String lopetusruutu = "";
@@ -21,7 +21,7 @@ public class Ihmispelaaja extends Pelaaja {
 		while(true) {
 			Scanner scanner = new Scanner(System.in);
 				
-			System.out.println("Laivan pituus: " + laivanPituus);
+			System.out.println("Laivan nimi: " + laivanNimi + " (Pituus: " + laivanPituus + ")");
 			System.out.println("Anna aloitusruutu");
 			aloitusruutu = scanner.nextLine();
 			System.out.println("Anna lopetusruutu");
