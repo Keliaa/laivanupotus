@@ -17,6 +17,14 @@ public class SyoteApu {
 		return false;
 	}
 	
+	public static boolean tarkistaPituus(int[] alku, int[] loppu, int pituus) {
+		if (alku[0] != loppu[0] && alku[1] != loppu[1]) return false;
+		
+		if (Math.abs(loppu[0]-alku[0]+loppu[1]-alku[1]) + 1 != pituus) return false;
+		
+		return true;
+	}
+	
 	//Muuttaa syöteruudun tyypistä String tyyppiin int[]. Esim "A0" -> {0,0}
 	public static int[] muunnaKoordinaateiksi(String s) {
 		int[] palautus = new int[2];
