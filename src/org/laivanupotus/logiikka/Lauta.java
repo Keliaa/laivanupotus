@@ -38,6 +38,23 @@ public class Lauta {
 		}
 	}
 	
+	public void asetaLaivaLaudalle(Laiva laiva) {
+		if(tarkistaKoordinaatit(laiva.annaMista(), laiva.annaMihin())) {
+			if(laiva.annaMihin()[0]>laiva.annaMista()[0]) {
+				int a=laiva.annaMista()[1];
+				for(int i = laiva.annaMista()[0]; i<=laiva.annaMihin()[0]; i++) {
+					lauta[i][a]="O";
+				}
+			}
+			if(laiva.annaMihin()[1]>laiva.annaMista()[1]) {
+				int a=laiva.annaMista()[0];
+				for(int i = laiva.annaMista()[1]; i<=laiva.annaMihin()[1]; i++) {
+					lauta[a][i]="O";
+				}
+			}	
+		}
+	}
+	
 	/*
 	 * muuttaa laudan ruudun kohdalle merkin "X"
 	 */

@@ -10,9 +10,11 @@ public class Laiva {
 	/*
 	 * konstruktori
 	 */
-	public Laiva(String nimi, int pituus) {
+	public Laiva(String nimi, int pituus, int mista[], int mihin[]) {
 		this.pituus=pituus;
 		this.nimi=nimi;	
+		this.mista = mista;
+		this.mihin = mihin;
 		koordinaatit= new String[pituus];
 	}
 
