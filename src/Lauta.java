@@ -1,12 +1,13 @@
+
 public class Lauta {
 	private String lauta[][];
 	
 	
 /*
- * tehd‰‰n uusi 10x10 lauta ja t‰ytet‰‰n se merell‰
+ * tehd‰‰n uusi 10x10 lauta ja t‰ytet‰‰n se merell‰ "~"
 */
 	public Lauta() {
-		this.lauta = new String[10][10];
+		lauta = new String[10][10];
 	
 		for(int i=0; i<10; i++) {
 			for (int j=0; j<10; j++) {
@@ -16,16 +17,31 @@ public class Lauta {
 	}
 
 /*
- * asetetaan laiva annettuihin koordinaatteihin ja tarkistetaan
+ * asetetaan laiva annettuihin koordinaatteihin jos tarkistus metodissa tarkistaKoordinaaitit() onnistuu
  */
 	
-	public void asetaLaiva(int[] mista, int[] mihin) {
-		
-		for(int i = mista[0]; i<= mihin[0]; i++) {
-			for(int j = mista[1]; i<= mihin[1]; j++) {
-				lauta[i][j] = "O";
+	public void asetaLaivaLaudalle(int[] mista, int[] mihin) {
+		if(tarkistaKoordinaatit(mista, mihin)) {
+			if(mihin[0]>mista[0]) {
+				int a=mista[1];
+				for(int i = mista[0]; i<=mihin[0]; i++) {
+					lauta[i][a]="O";
+				}
 			}
+			if(mihin[1]>mista[1]) {
+				int a=mista[0];
+				for(int i = mista[1]; i<=mihin[1]; i++) {
+					lauta[a][i]="O";
+				}
+			}	
 		}
+	}
+	
+	/*
+	 * muuttaa laudan ruudun kohdalle merkin "X"
+	 */
+	public void asetaAmmuttuRuutu(int[] ruutu) {
+		lauta[ruutu[0]][ruutu[1]]="X";
 	}
 	
 	/*

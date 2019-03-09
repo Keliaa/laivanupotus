@@ -12,7 +12,7 @@ public class Laiva {
 	public Laiva(String nimi, int pituus) {
 		this.pituus=pituus;
 		this.nimi=nimi;	
-		this.koordinaatit= new String[pituus];
+		koordinaatit= new String[pituus];
 	}
 
 	/*
@@ -76,7 +76,7 @@ public class Laiva {
 		for(int i=0; i<koordinaatit.length; i++) {
 			if(koordinaatit[i].equals(ammuttuRuutu)) {
 				koordinaatit[i]="-1";
-				System.out.println("Osuma!");//tän voi ottaa kans pois
+				System.out.println("Osuma!");
 				return true;
 			}
 		}
@@ -84,8 +84,8 @@ public class Laiva {
 	}
 		
 	/*
-	 * tarkastaa onko laivan kaikkiin ruutuihin osunut, jos on, laiva uppoaa ja on pois pelistä
-	 * @return true, jos laivan kaikkiin koordinaatteihin ammuttu ja laiva uppoaa (eli koordinaatit[]-listassa kaikki alkiot "-1")
+	 * tarkastaa onko laivan kaikkiin ruutuihin osunut, jos on, laiva pois pelistä
+	 * @return true, jos laivan kaikkiin koordinaatteihin ammuttu ja laiva uppoaa eli koordinaatit[]-listassa kaikki alkiot "-1"
 	 * @return false muuten
 	 */
 	public boolean onkoLaivaUponnut() {
