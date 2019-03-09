@@ -37,9 +37,9 @@ public class Pelaaja {
 			if (!SyoteApu.tarkistaSyote(aloitusruutu) || !SyoteApu.tarkistaSyote(lopetusruutu)) {
 				System.out.println("Väärän tyyppinen syöte. Anna ruudut muodossa 'A1'");
 				System.out.println();
+				
+				//Tarkasta pituus?
 			}
-			
-			//if (!SyoteApu.tarkistaPituus(aloitusruutu, lopetusruutu))
 			
 			else break;
 		}

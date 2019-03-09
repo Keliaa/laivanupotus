@@ -13,8 +13,13 @@ public class Paaluokka {
 		//luodaan pelaaajat
 		Pelaaja pelaaja = new Pelaaja("Testipelaaja");
 		
-		int[][] syote = pelaaja.otaSyote(4);
-		lauta.asetaLaivaLaudalle(syote[0], syote[1]);
+		//asetetaan laivat
+		int[] laivapituudet = new int[] {4, 3, 3, 2, 2, 2, 1, 1, 1, 1};
+		for (int a : laivapituudet) {
+			int[][] syote = pelaaja.otaSyote(a);
+			lauta.asetaLaivaLaudalle(syote[0], syote[1]);
+		}
+		
 		
 		lauta.tulostaLauta();
 		
