@@ -100,12 +100,16 @@ public class Tekoaly extends Pelaaja {
 		
 		//Tarkastaa osuttiinko yhteenk‰‰n laivaan, ja kommentoidaan asianmukaisesti
 		public void tarkastaLaivat(int[] ruutu) {
+			boolean huti = true;
 			for (Laiva l : laivaLista) {
 				if (l.tarkastaOsuma(ruutu)) {
+					huti = false;
 					if(l.onkoLaivaUponnut()) System.out.println("Osui ja upposi!");
 					else System.out.println("Osuma!");
 				}
 			}
+			if (huti)
+				System.out.println("Huti!");
 		}
 
 }

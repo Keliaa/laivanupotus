@@ -26,10 +26,11 @@ public class Paaluokka {
 		tekoaly.arvoLaivat(tekoLauta);
 		
 		//tulostetaan VAIN pelaajan lauta
-		lauta.tulostaLauta();
+		//lauta.tulostaLauta();
 		
 		//Loputon peli
 		while(true) {
+			lauta.tulostaLauta();
 		ihmispelaaja.vuoro(lauta, tekoLauta, tekoaly);
 		if (tekoLauta.onkoHavinnyt()) {
 			System.out.println("Voitit pelin!");
@@ -38,7 +39,6 @@ public class Paaluokka {
 		
 		tekoaly.vuoro(tekoLauta, lauta, ihmispelaaja);
 		tekoLauta.tulostaPiiloLauta();
-		lauta.tulostaLauta();
 		
 		if (lauta.onkoHavinnyt()) {
 			System.out.println("Hävisit pelin!");
