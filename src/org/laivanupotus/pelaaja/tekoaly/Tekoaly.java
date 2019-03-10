@@ -32,7 +32,7 @@ public class Tekoaly extends Pelaaja {
 					continue;
 				}
 				
-				else if(vaikeus == 2) {
+				else if(vaikeus == 2) { //Jos vaikeusaste on vaikea, yritetään todennäköisemmin ampua laivaan
 					if(lauta.annaMerkki(kohderuutu).equals("~") && rand.nextInt(10)>2) {
 						continue;
 					}

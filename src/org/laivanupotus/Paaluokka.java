@@ -14,6 +14,7 @@ public class Paaluokka {
 	
 	public static void main(String[] args) {
 		
+		//piirretään laiva
 		piirraLaiva();
 		
 		//luodaan pelaaajat
@@ -33,9 +34,7 @@ public class Paaluokka {
 			tekoLauta = Lataus.lataaLaudanTila(true);
 			lauta = Lataus.lataaLaudanTila(false);
 			
-			/*
-			 * MIKSI PITÄÄ KUTSUA NÄIN MONTA METODIA ETTÄ SAA LAIVAN LAITETTUA?!?!?!??
-			 */
+			//Asetetaan laivat laudalle ja listoihin
 			for (Laiva i : Lataus.lataaLaivojenTila(false)) {
 				lauta.asetaLaivaLaudalle(i);
 				ihmispelaaja.annaLaivaLista().add(i);
@@ -63,7 +62,7 @@ public class Paaluokka {
 		System.out.println("Voit kirjoittaa 'tallenna' tallentaaksesi pelin tästä eteenpäin.");
 		System.out.println();
 		
-		//Loputon peli
+		//Pelataan!
 		while(true) {
 			lauta.tulostaLauta();
 			ihmispelaaja.vuoro(lauta, tekoLauta, tekoaly);
@@ -88,6 +87,7 @@ public class Paaluokka {
 		}
 	}
 
+	//Tallennetaan peli
 	public static void tallennaPeli(Ihmispelaaja ihmispelaaja, Tekoaly tekoaly, Lauta lauta, Lauta tekolauta) {
 		Tallennus.tallennaLaivojenTila(ihmispelaaja.annaLaivaLista(), false);
 		Tallennus.tallennaLaivojenTila(tekoaly.annaLaivaLista(), true);

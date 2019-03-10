@@ -17,6 +17,7 @@ public class SyoteApu {
 		return false;
 	}
 	
+	//Tarkistaa että käyttäjän syöttämä laiva on oikean pituinen ja suora
 	public static boolean tarkistaPituus(int[] alku, int[] loppu, int pituus) {
 		if (alku[0] != loppu[0] && alku[1] != loppu[1]) return false;
 		

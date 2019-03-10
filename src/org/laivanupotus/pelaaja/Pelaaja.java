@@ -21,7 +21,7 @@ public class Pelaaja {
 		return nimi;
 	}
 	
-	//arpoo laivat
+	//arpoo laivat laudalle
 	public void arvoLaivat(Lauta lauta) {
 		int[] laivaPituudet = new int[] {4, 3, 3, 2, 2, 2, 1, 1, 1, 1};
 		String[] laivanNimet = new String[] {"Lentotukialus", "Risteilijä", "Risteilijä", "Hävittäjä", "Hävittäjä", "Hävittäjä", "Sukellusvene", "Sukellusvene", "Sukellusvene", "Sukellusvene"};
@@ -33,6 +33,7 @@ public class Pelaaja {
 		}
 	}
 	
+	//Arpoo sijainnin laivalle
 	public int[][] arvoSijainnit(int laivanPituus, Lauta l) {
 		
 		Random rand = new Random();

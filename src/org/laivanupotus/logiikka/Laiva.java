@@ -52,11 +52,8 @@ public class Laiva implements Serializable {
 	}
 	
 	/*
-	 * metodi tallentaa koordinaatit[String]-listaan kaikki laivan koordinaatit Stringinä muodossa 34 (eka vaakarivi ja toka pystyrivi)
+	 * metodi tallentaa int[][] matriisiin 'koordinaatit'  kaikki laivan koordinaatit 
 	 */
-	
-	
-	
 	public int[][] laivanKaikkiKoordinaatit(int[] mista, int[] mihin, int pituus) {
 		int[][] palautus = new int[pituus][2];
 		

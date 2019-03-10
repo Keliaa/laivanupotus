@@ -69,6 +69,7 @@ public class Ihmispelaaja extends Pelaaja {
 		return new int[][] {alkuKoordinaatti, loppuKoordinaatti};
 	}
 
+	//Kysyy miten pelaaja haluaa asettaa laudalle, ja kutsuu sen mukaista asetusmetodia
 	@SuppressWarnings("resource")
 	public void asetaLaivat(Lauta lauta) {
 		while(true) {
@@ -94,6 +95,7 @@ public class Ihmispelaaja extends Pelaaja {
 		}
 	}
 	
+	//Kysyy ladataanko peli
 	@SuppressWarnings("resource")
 	public void kysyLadataankoPeli() {
 		while(true) {
@@ -118,6 +120,7 @@ public class Ihmispelaaja extends Pelaaja {
 		}
 	}
 	
+	//Aseta laivat kysymällä käyttäjältä niiden sijainnit
 	public void kysyLaivat(Lauta lauta) {
 		int[] laivaPituudet = new int[] {4, 3, 3, 2, 2, 2, 1, 1, 1, 1};
 		String[] laivanNimet = new String[] {"Lentotukialus", "Risteilijä", "Risteilijä", "Hävittäjä", "Hävittäjä", "Hävittäjä", "Sukellusvene", "Sukellusvene", "Sukellusvene", "Sukellusvene"};

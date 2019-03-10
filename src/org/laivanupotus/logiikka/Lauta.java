@@ -23,24 +23,6 @@ public class Lauta implements Serializable {
 /*
  * asetetaan laiva annettuihin koordinaatteihin jos tarkistus metodissa tarkistaKoordinaaitit() onnistuu
  */
-	
-	public void asetaLaivaLaudalle(int[] mista, int[] mihin) {
-		if(tarkistaKoordinaatit(mista, mihin)) {
-			if(mihin[0]>mista[0]) {
-				int a=mista[1];
-				for(int i = mista[0]; i<=mihin[0]; i++) {
-					lauta[i][a]="O";
-				}
-			}
-			if(mihin[1]>mista[1]) {
-				int a=mista[0];
-				for(int i = mista[1]; i<=mihin[1]; i++) {
-					lauta[a][i]="O";
-				}
-			}	
-		}
-	}
-	
 	public void asetaLaivaLaudalle(Laiva laiva) {
 		if(tarkistaKoordinaatit(laiva.annaMista(), laiva.annaMihin())) {
 			if(laiva.annaMihin()[0]<laiva.annaMista()[0] || laiva.annaMihin()[1]<laiva.annaMista()[1]) {
