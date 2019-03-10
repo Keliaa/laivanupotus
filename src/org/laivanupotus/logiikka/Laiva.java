@@ -5,7 +5,7 @@ public class Laiva {
 	protected final String nimi;
 	private int[] mista = new int[2];
 	private int[] mihin = new int[2];
-	private String[] koordinaatit;
+	private int[][] koordinaatit;
 	private Lauta lauta;
 	
 	/*
@@ -16,8 +16,10 @@ public class Laiva {
 		this.nimi=nimi;	
 		this.mista = mista;
 		this.mihin = mihin;
-		koordinaatit= new String[pituus];
+		this.koordinaatit = laivanKaikkiKoordinaatit(mista, mihin, pituus);
 		this.lauta = lauta;
+		
+		
 	}
 
 	/*
@@ -53,13 +55,49 @@ public class Laiva {
 	 * metodi tallentaa koordinaatit[String]-listaan kaikki laivan koordinaatit Stringinä muodossa 34 (eka vaakarivi ja toka pystyrivi)
 	 */
 	
-	public void laivanKaikkiKoordinaatit() {
-		int a=0;
+	
+	
+	public int[][] laivanKaikkiKoordinaatit(int[] mista, int[] mihin, int pituus) {
+		int[][] palautus = new int[pituus][2];
+		
+		if (mista[0] == mihin[0]) {
+			if (mista[1] < mihin[1]) {
+				for (int i = 0; i<=mihin[1] - mista[1]; i++) {
+					palautus[i][1] = mista[1] + i;
+					palautus[i][0] = mista[0];
+				}
+			}
+			else {
+				for (int i = 0; i<=mista[1] - mihin[1]; i++) {
+					palautus[i][1] = mihin[1] + i;
+					palautus[i][0] = mista[0];
+				}
+			}
+		}
+		
+		else if (mista[1] == mihin[1]) {
+			if (mista[0] < mihin[0]) {
+				for (int i = 0; i<=mihin[0] - mista[0]; i++) {
+					palautus[i][0] = mista[0] + i;
+					palautus[i][1] = mista[1];
+				}
+			}
+			else {
+				for (int i = 0; i<=mista[0] - mihin[0]; i++) {
+					palautus[i][0] = mihin[0] + i;
+					palautus[i][1] = mista[1];
+				}
+			}
+		}
+		return palautus;
+		
+		/*int a=0;
 		if(mihin[0]>mista[0]) {//jos laiva on pystysuorassa (eli A3 ja A:n arvo muuttuu)
 			int b= mista[1];
 			for(int i=0; i<mihin[0]-mista[0];i ++) {
 				a=mista[0]+i;
-				koordinaatit[i]= a +""+ b;
+				koordinaatit[i][0] = a;
+				koordinaatit[i][1] = b;
 			}
 		}
 		if(mihin[1]>mista[1]) { //Jos laiva on vaakasuorassa(eli 3A ja A:n arvo muuttuu)
@@ -67,21 +105,24 @@ public class Laiva {
 			int c= mista[0];
 			for(int i=0; i<=mihin[1]-mista[1];i++) {
 				a=mista[1]+i;
-				koordinaatit[i]= c+""+a;
+				koordinaatit[i][0] = c;
+				koordinaatit[i][1] = a;
 			}
-		}
+		}*/
 	}
+	
+	
 	
 	/*
 	 * metodi vertaa ammuttua koordinaattia laivan koordinaatteihin
 	 * @return true, jos osuu
 	 * @return false muuten
 	 */
-	public boolean tarkastaOsuma(String ammuttuRuutu) {
+	public boolean tarkastaOsuma(int[] ammuttuRuutu) {
 		for(int i=0; i<koordinaatit.length; i++) {
-			if(koordinaatit[i].equals(ammuttuRuutu)) {
-				koordinaatit[i]="-1";
-				System.out.println("Osuma!");
+			if(koordinaatit[i][0] == ammuttuRuutu[0] && koordinaatit[i][1] == ammuttuRuutu[1]) {
+				koordinaatit[i][0]=-1;
+				koordinaatit[i][1]=-1;
 				return true;
 			}
 		}
@@ -96,7 +137,7 @@ public class Laiva {
 	public boolean onkoLaivaUponnut() {
 		boolean kuolema=true;
 		for(int i=0; i<koordinaatit.length; i++) {
-			if(koordinaatit[i].equals("-1")) {
+			if(koordinaatit[i][0] == -1) {
 				continue;
 			}else {
 				kuolema = false;

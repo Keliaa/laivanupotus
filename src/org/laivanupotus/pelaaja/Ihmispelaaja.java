@@ -1,16 +1,20 @@
 package org.laivanupotus.pelaaja;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import org.laivanupotus.apuluokat.SyoteApu;
 import org.laivanupotus.logiikka.Laiva;
 import org.laivanupotus.logiikka.Lauta;
+import org.laivanupotus.pelaaja.tekoaly.Tekoaly;
 
 public class Ihmispelaaja extends Pelaaja {
 
 	public Ihmispelaaja(String nimi) {
 		super(nimi);
 	}
+	
+	private ArrayList<Laiva> laivaLista = new ArrayList<Laiva>();
 
 	//Pyytää käyttäjää asettamaan x pituisen laivan laudalle.
 	//Tarkistaa onko syöttämät ruudut oikeassa muodossa ja muuntaa ne numerokoordinaateiksi
@@ -42,7 +46,7 @@ public class Ihmispelaaja extends Pelaaja {
 				
 			//Tarkastetaan onko syöte oikean tyyppinen
 			if (!SyoteApu.tarkistaSyote(aloitusruutu) || !SyoteApu.tarkistaSyote(lopetusruutu)) {
-				System.out.println("Väärän tyyppinen syöte. Anna ruudut muodossa 'A1'");
+				System.out.println("Väärän tyyppinen syöte. Anna ruudut muodossa 'A0'");
 				System.out.println();
 			} 
 			
@@ -73,9 +77,46 @@ public class Ihmispelaaja extends Pelaaja {
 			lauta.tulostaLauta();
 			int[][] syote = otaSyote(laivaPituudet[i], laivanNimet[i], lauta);
 			Laiva laiva = new Laiva(laivanNimet[i], laivaPituudet[i], syote[0], syote[1], lauta);
+			laivaLista.add(laiva);
 			lauta.asetaLaivaLaudalle(laiva);
 		}
 		
+	}
+	
+	//Pyytää ruudun, ttarkastaa voiko ruutuun ampua, jos voi niin ampuu
+	public void vuoro(Lauta lauta, Lauta tekoLauta, Tekoaly tekoaly) {
+		String kohderuutu = "";
+		
+		while(true) {
+			Scanner scanner = new Scanner(System.in);
+			
+			//Pyydetään syöte
+			System.out.println("Anna ruutu, johon haluat ampua");
+			kohderuutu = scanner.nextLine();
+			
+			//Tarkastetaan onko syöte oikean tyyppinen
+			if (!SyoteApu.tarkistaSyote(kohderuutu)) {
+				System.out.println("Väärän tyyppinen syöte. Anna ruutu muodossa 'A0'");
+				System.out.println();
+			}
+			
+			//Tarkastetaan onko jo ammuttu tähän ruutuun
+			else if(tekoLauta.annaMerkki(SyoteApu.muunnaKoordinaateiksi(kohderuutu)).equals("X")) {
+				System.out.println("Tähän ruutuun on jo ammuttu!");
+				System.out.println();
+			}
+			
+			else break;
+		}
+		
+		ammu(SyoteApu.muunnaKoordinaateiksi(kohderuutu), tekoLauta, tekoaly);
+	}
+	
+	//Asettaa ruudun merkiksi "X"
+	//Tsekkaa osumat ja uponneet ja kommentoi asianmukaisesti
+	public void ammu(int[] ruutu, Lauta tekoLauta, Tekoaly tekoaly) {
+		tekoLauta.asetaAmmuttuRuutu(ruutu);
+		tekoaly.tarkastaLaivat(ruutu);
 	}
 	
 }

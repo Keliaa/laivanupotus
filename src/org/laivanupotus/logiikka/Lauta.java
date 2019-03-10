@@ -117,6 +117,12 @@ public class Lauta {
 		}
 		System.out.println();
 	}
+	
+	//Palauttaa merkin koordinaattien kohdasta
+	public String annaMerkki(int[] a) {
+		return lauta[a[0]][a[1]];
+	}
+	
 }
 
 		

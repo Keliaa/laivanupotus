@@ -20,7 +20,8 @@ public class Paaluokka {
 		Tekoaly tekoaly = new Tekoaly("Tekoaly");
 		
 		//asetetaan laivat - pelaaja
-		ihmispelaaja.kysyLaivat(lauta);
+		//ihmispelaaja.kysyLaivat(lauta);
+		tekoaly.arvoLaivat(lauta);
 		
 		//asetetaan laivat - tekoäly
 		tekoaly.arvoLaivat(tekoLauta);
@@ -28,6 +29,11 @@ public class Paaluokka {
 		//tulostetaan VAIN pelaajan lauta
 		lauta.tulostaLauta();
 		
+		
+		while(true) {
+		ihmispelaaja.vuoro(lauta, tekoLauta, tekoaly);
+		tekoaly.vuoro(tekoLauta, lauta);
+		}
 	}
 
 }

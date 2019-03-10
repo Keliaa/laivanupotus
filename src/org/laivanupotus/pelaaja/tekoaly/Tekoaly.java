@@ -1,6 +1,8 @@
 package org.laivanupotus.pelaaja.tekoaly;
 
+import java.util.ArrayList;
 import java.util.Random;
+import java.util.Scanner;
 
 import org.laivanupotus.apuluokat.SyoteApu;
 import org.laivanupotus.logiikka.Laiva;
@@ -8,6 +10,8 @@ import org.laivanupotus.logiikka.Lauta;
 import org.laivanupotus.pelaaja.Pelaaja;
 
 public class Tekoaly extends Pelaaja {
+	
+	private ArrayList<Laiva> laivaLista = new ArrayList<Laiva>();
 
 	public Tekoaly(String nimi) {
 		super(nimi);
@@ -23,6 +27,7 @@ public class Tekoaly extends Pelaaja {
 		for (int i=0; i<laivaPituudet.length; i++) {
 			int[][] syote = arvoSijainnit(laivaPituudet[i], lauta);
 			Laiva laiva = new Laiva(laivanNimet[i], laivaPituudet[i], syote[0], syote[1], lauta);
+			laivaLista.add(laiva);
 			lauta.asetaLaivaLaudalle(laiva);
 		}
 	}
@@ -64,5 +69,45 @@ public class Tekoaly extends Pelaaja {
 			
 		}
 	}
+	
+	//Ampuu satunnaiseen ruutuun
+		public void vuoro(Lauta tekoLauta, Lauta lauta) {
+			
+			Random rand = new Random();
+			int[] kohderuutu = new int[2];
+			
+			while(true) {
+				kohderuutu[0] = rand.nextInt(10);
+				kohderuutu[1] = rand.nextInt(10);
+				
+				//Tarkastetaan onko jo ammuttu tähän ruutuun
+				if(lauta.annaMerkki(kohderuutu).equals("X")) {
+					System.out.println("Tähän ruutuun on jo ammuttu!");
+					System.out.println();
+				}
+				
+				else break;
+			}
+			
+			ammu(kohderuutu, lauta);
+			lauta.tulostaLauta();
+		}
+		
+		//Asettaa ruudun merkiksi "X" ja tarkistaa oliko osuma
+		public void ammu(int[] ruutu, Lauta lauta) {
+			lauta.asetaAmmuttuRuutu(ruutu);
+			for (Laiva l : laivaLista) {
+				l.tarkastaOsuma(ruutu);
+			}
+		}
+		
+		public void tarkastaLaivat(int[] ruutu) {
+			for (Laiva l : laivaLista) {
+				if (l.tarkastaOsuma(ruutu)) {
+					if(l.onkoLaivaUponnut()) System.out.println("Osui ja upposi!");
+					else System.out.println("Osuma!");
+				}
+			}
+		}
 
 }
