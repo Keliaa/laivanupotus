@@ -34,8 +34,19 @@ public class Paaluokka {
 		//Loputon peli
 		while(true) {
 		ihmispelaaja.vuoro(lauta, tekoLauta, tekoaly);
+		if (tekoLauta.onkoHavinnyt()) {
+			System.out.println("Voitit pelin!");
+			break;
+		}
+		
 		tekoaly.vuoro(tekoLauta, lauta, ihmispelaaja);
+		tekoLauta.tulostaPiiloLauta();
 		lauta.tulostaLauta();
+		
+		if (lauta.onkoHavinnyt()) {
+			System.out.println("Hävisit pelin!");
+			break;
+		}
 		}
 	}
 

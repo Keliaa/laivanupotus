@@ -105,6 +105,7 @@ public class Lauta {
         }
 		return onkoLaiva;
 	}
+	
 	/*
 	 * tulostaa laudan sen nykyisessä tilassa
 	 */
@@ -117,6 +118,29 @@ public class Lauta {
 		}
 		System.out.println();
 	}
+	
+	/*
+	 * tulostaa laudan ilman laivoja
+	 */
+	public void tulostaPiiloLauta() {
+		String[][] piiloLauta = new String[10][10]; //tekee piilolaudan, ja poistaa siitä laivat
+		for	(int i = 0; i<lauta.length; i++) {
+			for (int j = 0; j<lauta[0].length; j++) {
+				piiloLauta[i][j] = lauta[i][j];
+				if(lauta[i][j].equals("O")) {
+					piiloLauta[i][j] = "~";
+				}
+			}
+		}
+		
+		String[] taul = {"A","B","C","D","E","F","G","H","I","J"};	//tulostaa piilolaudan
+		System.out.println(" "+"|"  + '0' +"|" + '1' + "|"+ '2' + "|"+ '3' + "|"+ '4' + "|"+ '5' + "|"+ '6' + "|"+ '7' + "|"+ '8' + "|"+ '9' + "|");
+		for(int i=0; i<10; i++) {
+				System.out.println(taul[i]+"|" + piiloLauta[i][0]+"|" + piiloLauta[i][1]+"|" + piiloLauta[i][2]+"|" + piiloLauta[i][3]+"|" + piiloLauta[i][4]+"|" + piiloLauta[i][5]+"|" + piiloLauta[i][6]+"|" + piiloLauta[i][7]+"|" + piiloLauta[i][8]+"|" + piiloLauta[i][9]+"|");
+		}
+		System.out.println();
+	}
+	
 	//Palauttaa merkin koordinaattien kohdasta
 	public String annaMerkki(int[] a) {
 		return lauta[a[0]][a[1]];

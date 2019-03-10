@@ -84,8 +84,6 @@ public class Tekoaly extends Pelaaja {
 				
 				//Tarkastetaan onko jo ammuttu tähän ruutuun
 				if(lauta.annaMerkki(kohderuutu).equals("X")) {
-					System.out.println("Tähän ruutuun on jo ammuttu!");
-					System.out.println();
 				}
 				
 				else break;
