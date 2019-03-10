@@ -29,7 +29,11 @@ public class SyoteApu {
 	public static int[] muunnaKoordinaateiksi(String s) {
 		int[] palautus = new int[2];
 		palautus[0] = muunnaNumeroksi(s.substring(0,1));
-		palautus[1] = Integer.parseInt(s.substring(1, 2));
+		try {
+			palautus[1] = Integer.parseInt(s.substring(1, 2));
+		} catch (NumberFormatException ex) {
+			System.out.println("Väärän tyyppinen syöte. Anna ruudut muodossa 'A0'");
+		}
 		return palautus;
 	}
 	
