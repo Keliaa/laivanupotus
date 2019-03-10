@@ -14,6 +14,8 @@ public class Paaluokka {
 	
 	public static void main(String[] args) {
 		
+		piirraLaiva();
+		
 		//luodaan pelaaajat
 		Ihmispelaaja ihmispelaaja = new Ihmispelaaja("Testipelaaja");
 		Tekoaly tekoaly = new Tekoaly("Tekoaly");
@@ -92,5 +94,19 @@ public class Paaluokka {
 		Tallennus.tallennaLaudanTila(lauta, false);
 		Tallennus.tallennaLaudanTila(tekolauta, true);
 	}
+	
+	//Piirt‰‰ ascii laivan
+	public static void piirraLaiva() {
+    	System.out.println("              |    |    |                 ");
+    	System.out.println(" Laivan      )_)  )_)  )_)              ");
+    	System.out.println("  Upotus    )___))___))___)\\            ");
+    	System.out.println("    1.0    )____)____)_____)\\\\");
+    	System.out.println("         _____|____|____|____\\\\\\__");
+    	System.out.println("---------\\                   /---------");
+    	System.out.println("  ^^^^^ ^^^^^^^^^^^^^^^^^^^^^");
+    	System.out.println("");
+    	System.out.println("    ^^^^      ^^^^     ^^^    ^^");
+    	System.out.println("         ^^^^      ^^^");
+    }
 
 }
