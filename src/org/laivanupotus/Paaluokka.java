@@ -20,10 +20,7 @@ public class Paaluokka {
 		Tekoaly tekoaly = new Tekoaly("Tekoaly");
 		
 		//asetetaan laivat - pelaaja
-		//ihmispelaaja.kysyLaivat(lauta);
-		
-		//arvotaan ihmispelaajan laivat
-		ihmispelaaja.arvoLaivat(lauta);
+		ihmispelaaja.asetaLaivat(lauta);
 		
 		//asetetaan laivat - tekoäly
 		tekoaly.arvoLaivat(tekoLauta);

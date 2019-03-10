@@ -71,6 +71,30 @@ public class Ihmispelaaja extends Pelaaja {
 		return new int[][] {alkuKoordinaatti, loppuKoordinaatti};
 	}
 
+	public void asetaLaivat(Lauta lauta) {
+		while(true) {
+			Scanner scanner = new Scanner(System.in);
+			
+			System.out.println("Syötä '1' asettaaksesi laivat laudalle manuaalisesti.");
+			System.out.println("Syötä '2' arpoaksesi laivojen sijainnit.");
+			String syote = scanner.nextLine();
+			
+			if (syote.equals("1")) {
+				kysyLaivat(lauta);
+				break;
+			}
+			
+			else if (syote.equals("2")) {
+				arvoLaivat(lauta);
+				break;
+			}
+			
+			else {
+				System.out.println("Vääränlainen syöte!");
+			}
+		}
+	}
+	
 	public void kysyLaivat(Lauta lauta) {
 		int[] laivaPituudet = new int[] {4, 3, 3, 2, 2, 2, 1, 1, 1, 1};
 		String[] laivanNimet = new String[] {"Lentotukialus", "Risteilijä", "Risteilijä", "Hävittäjä", "Hävittäjä", "Hävittäjä", "Sukellusvene", "Sukellusvene", "Sukellusvene", "Sukellusvene"};
