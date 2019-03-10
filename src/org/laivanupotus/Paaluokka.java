@@ -19,16 +19,20 @@ public class Paaluokka {
 		Ihmispelaaja ihmispelaaja = new Ihmispelaaja("Testipelaaja");
 		Tekoaly tekoaly = new Tekoaly("Tekoaly");
 		
+		//Asetetaan tekoälyn vaikeusaste
+		tekoaly.asetaVaikeus();
+		
 		//asetetaan laivat - pelaaja
 		ihmispelaaja.asetaLaivat(lauta);
 		
 		//asetetaan laivat - tekoäly
 		tekoaly.arvoLaivat(tekoLauta);
 		
-		//tulostetaan VAIN pelaajan lauta
+		//tulostetaan laudat
+		tekoLauta.tulostaPiiloLauta();
 		lauta.tulostaLauta();
 		
-		//Loputon peli
+		//Peli
 		while(true) {
 		ihmispelaaja.vuoro(lauta, tekoLauta, tekoaly);
 		if (tekoLauta.onkoHavinnyt()) {
