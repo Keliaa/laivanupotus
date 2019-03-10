@@ -6,12 +6,12 @@ public class SyoteApu {
 	
 	//Tarkistaa onko syöte muotoa kirjainNumero, esim "A0"
 	public static boolean tarkistaSyote(String s){		
-		String regex = "^[a-jA-J0-9]+$";
+		String regex = "^[a-jA-J]+[0-9]";
 		
 		Pattern pattern = Pattern.compile(regex);
 		Matcher matcher = pattern.matcher(s);   
 		
-		if(matcher.find()) {
+		if(matcher.find() && s.length() == 2) {
 			return true;
 		}
 		return false;
