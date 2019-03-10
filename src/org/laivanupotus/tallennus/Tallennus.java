@@ -12,6 +12,7 @@ public class Tallennus {
 	private static final String filepath=".\\tallennukset\\";
 	
 	//tallentaa laudan
+    //eri polut riippuen onko tekoäly vai ei
 	public static void tallennaLaudanTila(Lauta lauta, boolean tekoaly) {
 		if (tekoaly)
 			WriteObjectToFile(lauta, "LautaTeko");
@@ -20,6 +21,7 @@ public class Tallennus {
 	}
 	
 	//tallentaa laivat
+    //eri polut riippuen onko tekoäly vai ei
 	public static void tallennaLaivojenTila(ArrayList<Laiva> laiva, boolean tekoaly) {
 		if(tekoaly)
 			WriteObjectToFile(laiva, "LaivaTeko");
@@ -40,7 +42,7 @@ public class Tallennus {
             ObjectOutputStream objectOut = new ObjectOutputStream(fileOut);
             objectOut.writeObject(serObj);
             objectOut.close();
-            System.out.println("Peli tallentui onnistuneesti kansioon: " + filepath);
+            System.out.println("Peli tallentui onnistuneesti kansioon: " + filepath + nimi);
  
         } catch (Exception ex) {
         	System.out.println("Tallennuksessa meni jokin pieleen.");

@@ -25,7 +25,9 @@ public class Lataus {
         return lauta;
     }
     
-    public static ArrayList<Laiva> lataaLaivojenTila(boolean tekoaly) {
+    @SuppressWarnings("unchecked")
+    //eri polut riippuen onko tekoäly vai ei
+	public static ArrayList<Laiva> lataaLaivojenTila(boolean tekoaly) {
     	 
     	Lataus lataus = new Lataus();
     	ArrayList<Laiva> laiva = null;

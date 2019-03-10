@@ -1,7 +1,5 @@
 package org.laivanupotus.pelaaja;
 
-import java.util.ArrayList;
-import java.util.Random;
 import java.util.Scanner;
 
 import org.laivanupotus.Paaluokka;
@@ -19,6 +17,7 @@ public class Ihmispelaaja extends Pelaaja {
 	//Pyyt‰‰ k‰ytt‰j‰‰ asettamaan x pituisen laivan laudalle.
 	//Tarkistaa onko syˆtt‰m‰t ruudut oikeassa muodossa ja muuntaa ne numerokoordinaateiksi
 	//Palauttaa int[][] koordinaatit 
+	@SuppressWarnings("resource")
 	public int[][] otaSyote(int laivanPituus, String laivanNimi, Lauta lauta) {
 
 		String aloitusruutu = "";
@@ -70,6 +69,7 @@ public class Ihmispelaaja extends Pelaaja {
 		return new int[][] {alkuKoordinaatti, loppuKoordinaatti};
 	}
 
+	@SuppressWarnings("resource")
 	public void asetaLaivat(Lauta lauta) {
 		while(true) {
 			Scanner scanner = new Scanner(System.in);
@@ -94,6 +94,7 @@ public class Ihmispelaaja extends Pelaaja {
 		}
 	}
 	
+	@SuppressWarnings("resource")
 	public void kysyLadataankoPeli() {
 		while(true) {
 			Scanner scanner = new Scanner(System.in);
@@ -131,6 +132,7 @@ public class Ihmispelaaja extends Pelaaja {
 	}
 	
 	//Pyyt‰‰ ruudun, tarkastaa voiko ruutuun ampua, jos voi niin ampuu
+	@SuppressWarnings("resource")
 	public void vuoro(Lauta lauta, Lauta tekoLauta, Tekoaly tekoaly) {
 		String kohderuutu = "";
 		

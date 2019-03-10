@@ -2,14 +2,13 @@ package org.laivanupotus.logiikka;
 
 import java.io.Serializable;
 
+@SuppressWarnings("serial")
 public class Laiva implements Serializable {
 	protected final int pituus;
 	protected final String nimi;
 	private int[] mista = new int[2];
 	private int[] mihin = new int[2];
 	private int[][] koordinaatit;
-	private Lauta lauta;
-	
 	/*
 	 * konstruktori
 	 */
@@ -19,7 +18,6 @@ public class Laiva implements Serializable {
 		this.mista = mista;
 		this.mihin = mihin;
 		this.koordinaatit = laivanKaikkiKoordinaatit(mista, mihin, pituus);
-		this.lauta = lauta;
 		
 		
 	}

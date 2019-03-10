@@ -17,6 +17,7 @@ public class Paaluokka {
 		Ihmispelaaja ihmispelaaja = new Ihmispelaaja("Testipelaaja");
 		Tekoaly tekoaly = new Tekoaly("Tekoaly");
 		
+		//Luodaan laudat
 		Lauta tekoLauta = null;
 		Lauta lauta = null;
 		
@@ -24,13 +25,13 @@ public class Paaluokka {
 		tekoaly.asetaVaikeus();
 		ihmispelaaja.kysyLadataankoPeli();
 		
+		//Lautojen asettelua
 		if(lataa) {
-			lauta = Lataus.lataaLaudanTila(true);
+			tekoLauta = Lataus.lataaLaudanTila(true);
 			lauta = Lataus.lataaLaudanTila(false);
 			lataa = false;
 		} else {
 		
-			//luodaan lauta
 			lauta = new Lauta();
 			
 			//luodaan tekoälyn lauta. tätä ei sitten printata, muuten voi mennä pelaaminen liian helpoksi.
@@ -68,7 +69,7 @@ public class Paaluokka {
 			
 		}
 	}
-	
+
 	public static void tallennaPeli(Ihmispelaaja ihmispelaaja, Tekoaly tekoaly, Lauta lauta, Lauta tekolauta) {
 		Tallennus.tallennaLaivojenTila(ihmispelaaja.annaLaivaLista(), false);
 		Tallennus.tallennaLaivojenTila(tekoaly.annaLaivaLista(), true);

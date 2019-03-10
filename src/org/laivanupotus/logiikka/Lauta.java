@@ -2,6 +2,7 @@ package org.laivanupotus.logiikka;
 
 import java.io.Serializable;
 
+@SuppressWarnings("serial")
 public class Lauta implements Serializable {
 	private String lauta[][];
 	

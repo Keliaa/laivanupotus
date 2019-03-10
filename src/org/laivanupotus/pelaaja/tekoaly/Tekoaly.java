@@ -67,6 +67,7 @@ public class Tekoaly extends Pelaaja {
 		}
 		
 		//Kysyy pelaajalta vaikeusasteen ja asettaa sen muuttujaan vaikeus
+		@SuppressWarnings("resource")
 		public void asetaVaikeus() {
 			while(true) {
 				Scanner scanner = new Scanner(System.in);
