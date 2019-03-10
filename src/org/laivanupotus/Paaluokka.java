@@ -3,6 +3,7 @@ package org.laivanupotus;
 import org.laivanupotus.logiikka.Lauta;
 import org.laivanupotus.pelaaja.Ihmispelaaja;
 import org.laivanupotus.pelaaja.tekoaly.Tekoaly;
+import org.laivanupotus.tallennus.Lataus;
 import org.laivanupotus.tallennus.Tallennus;
 
 public class Paaluokka {
@@ -10,6 +11,7 @@ public class Paaluokka {
 	//testi :D
 	
 	public static void main(String[] args) {
+		lataaPeli();
 		//luodaan lauta
 		Lauta lauta = new Lauta();
 		
@@ -29,12 +31,6 @@ public class Paaluokka {
 		//asetetaan laivat - teko‰ly
 		tekoaly.arvoLaivat(tekoLauta);
 		
-		//tulostetaan VAIN pelaajan lauta
-		//lauta.tulostaLauta();
-		
-		//Tallennus.tallennaLaudanTila(lauta);
-		//Tallennus.tallennaLaivojenTila(ihmispelaaja.annaLaivaLista());
-		
 		//Loputon peli
 		while(true) {
 			lauta.tulostaLauta();
@@ -52,6 +48,24 @@ public class Paaluokka {
 				break;
 			}
 		}
+	}
+	
+	/*n‰in ladataan molemmat laudat
+	 * metodia itsess‰‰n ei ole pakko k‰ytt‰‰ t‰‰ on esimerkki
+	 */
+	public static void lataaPeli() {
+		Lauta tekolauta = Lataus.lataaLaudanTila(true);
+		Lauta lauta = Lataus.lataaLaudanTila(false);
+	}
+	
+	/*'
+	 * t‰‰ on vaa esimerkki et mite ne ladataa
+	 */
+	public static void lataaLaivat() {
+		Ihmispelaaja ihmispelaaja = new Ihmispelaaja("Testipelaaja");
+		Tekoaly tekoaly = new Tekoaly("Tekoaly");
+		ihmispelaaja.asetaLaivaLista(Lataus.lataaLaivojenTila(false));
+		tekoaly.asetaLaivaLista(Lataus.lataaLaivojenTila(true));
 	}
 
 }

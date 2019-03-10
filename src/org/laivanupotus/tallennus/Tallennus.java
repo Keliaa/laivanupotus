@@ -12,13 +12,19 @@ public class Tallennus {
 	private static final String filepath=".\\tallennukset\\";
 	
 	//tallentaa laudan
-	public static void tallennaLaudanTila(Lauta lauta) {
-		WriteObjectToFile(lauta, "Lauta");
+	public static void tallennaLaudanTila(Lauta lauta, boolean tekoaly) {
+		if (tekoaly)
+			WriteObjectToFile(lauta, "LautaTeko");
+		else
+			WriteObjectToFile(lauta, "Lauta");
 	}
 	
 	//tallentaa laivat
-	public static void tallennaLaivojenTila(ArrayList<Laiva> laiva) {
-		WriteObjectToFile(laiva, "Laiva");
+	public static void tallennaLaivojenTila(ArrayList<Laiva> laiva, boolean tekoaly) {
+		if(tekoaly)
+			WriteObjectToFile(laiva, "LaivaTeko");
+		else
+			WriteObjectToFile(laiva, "Laiva");
 	}
 	
 	/**

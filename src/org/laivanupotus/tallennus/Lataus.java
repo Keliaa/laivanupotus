@@ -11,21 +11,27 @@ public class Lataus {
 	
 	private static final String filepath=".\\tallennukset\\";
 	 
-    public static Lauta lataaLaudanTila() {
+    public static Lauta lataaLaudanTila(boolean tekoaly) {
  
     	Lataus lataus = new Lataus();
- 
+    	Lauta lauta = null;
         //Lukee tiedon
-    	Lauta lauta = (Lauta) lataus.ReadObjectFromFile(filepath+ "Lauta");
+    	if (tekoaly)
+    		lauta = (Lauta) lataus.ReadObjectFromFile(filepath+ "LautaTeko");
+    	else
+    		lauta = (Lauta) lataus.ReadObjectFromFile(filepath+ "Lauta");
         return lauta;
     }
     
-    public static ArrayList<Laiva> lataaLaivojenTila() {
+    public static ArrayList<Laiva> lataaLaivojenTila(boolean tekoaly) {
     	 
     	Lataus lataus = new Lataus();
- 
+    	ArrayList<Laiva> laiva = null;
         //Lukee tiedon
-    	ArrayList<Laiva> laiva = (ArrayList<Laiva>) lataus.ReadObjectFromFile(filepath+ "Laiva");
+    	if (tekoaly)
+    		laiva = (ArrayList<Laiva>) lataus.ReadObjectFromFile(filepath+ "LaivaTeko");
+    	else
+    		laiva = (ArrayList<Laiva>) lataus.ReadObjectFromFile(filepath+ "Laiva");
         return laiva;
     }
  

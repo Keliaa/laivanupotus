@@ -10,11 +10,9 @@ import org.laivanupotus.logiikka.Lauta;
 import org.laivanupotus.pelaaja.tekoaly.Tekoaly;
 
 public class Ihmispelaaja extends Pelaaja {
-	private ArrayList<Laiva> laivaLista; 
 	
 	public Ihmispelaaja(String nimi) {
 		super(nimi);
-		laivaLista = new ArrayList<Laiva>();
 	}
 
 	//Pyyt‰‰ k‰ytt‰j‰‰ asettamaan x pituisen laivan laudalle.
@@ -102,44 +100,10 @@ public class Ihmispelaaja extends Pelaaja {
 			lauta.tulostaLauta();
 			int[][] syote = otaSyote(laivaPituudet[i], laivanNimet[i], lauta);
 			Laiva laiva = new Laiva(laivanNimet[i], laivaPituudet[i], syote[0], syote[1], lauta);
-			laivaLista.add(laiva);
+			annaLaivaLista().add(laiva);
 			lauta.asetaLaivaLaudalle(laiva);
 		}
 		
-	}
-	
-	//arpoo laivat
-	public void arvoLaivat(Lauta lauta) {
-		int[] laivaPituudet = new int[] {4, 3, 3, 2, 2, 2, 1, 1, 1, 1};
-		String[] laivanNimet = new String[] {"Lentotukialus", "Risteilij‰", "Risteilij‰", "H‰vitt‰j‰", "H‰vitt‰j‰", "H‰vitt‰j‰", "Sukellusvene", "Sukellusvene", "Sukellusvene", "Sukellusvene"};
-		for (int i=0; i<laivaPituudet.length; i++) {
-			int[][] syote = arvoSijainnit(laivaPituudet[i], lauta);
-			Laiva laiva = new Laiva(laivanNimet[i], laivaPituudet[i], syote[0], syote[1], lauta);
-			laivaLista.add(laiva);
-			lauta.asetaLaivaLaudalle(laiva);
-		}
-	}
-	
-public int[][] arvoSijainnit(int laivanPituus, Lauta l) {
-		
-		Random rand = new Random();
-		
-		while(true) {
-			int[] a = new int[] {rand.nextInt(10), rand.nextInt(10)};
-			int[] b = new int[] {rand.nextInt(10), rand.nextInt(10)};
-			
-			//Tarkastetaan onko syˆtetty laiva oikean pituinen ja suora
-			if (!SyoteApu.tarkistaPituus(a, b, laivanPituus)){
-			}
-			
-			//Tarkaseetaan tulisiko p‰‰llekk‰isi‰/vierekk‰isi‰ laivoja
-			else if (!l.tarkistaKoordinaatit(a, b)){
-			}
-			
-			else{
-				return new int[][] {a, b};
-			}
-		}
 	}
 	
 	//Pyyt‰‰ ruudun, tarkastaa voiko ruutuun ampua, jos voi niin ampuu
@@ -178,14 +142,9 @@ public int[][] arvoSijainnit(int laivanPituus, Lauta l) {
 		tekoaly.tarkastaLaivat(ruutu);
 	}
 	
-	//palauttaa listan laivoista
-	public ArrayList<Laiva> annaLaivaLista() {
-		return laivaLista;
-	}
-	
 	//Tarkastaa osuiko teko‰ly yhteenk‰‰n laivaan. Jos osui, asetetaan laivaan osuma
 	public void tarkastaLaivat(int[] ruutu) {
-		for (Laiva l : laivaLista) {
+		for (Laiva l : annaLaivaLista()) {
 			l.tarkastaOsuma(ruutu);
 		}
 	}
