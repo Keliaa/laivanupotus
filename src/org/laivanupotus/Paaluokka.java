@@ -29,7 +29,7 @@ public class Paaluokka {
 		//tulostetaan VAIN pelaajan lauta
 		lauta.tulostaLauta();
 		
-		
+		//Loputon peli
 		while(true) {
 		ihmispelaaja.vuoro(lauta, tekoLauta, tekoaly);
 		tekoaly.vuoro(tekoLauta, lauta);
