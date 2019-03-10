@@ -53,7 +53,7 @@ public class Lataus {
  
             Object obj = objectIn.readObject();
  
-            System.out.println("Lataus onnistui kansioon: " + filepath);
+            System.out.println("Lataus onnistui kansiosta " + filepath);
             objectIn.close();
             return obj;
  

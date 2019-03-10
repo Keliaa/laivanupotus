@@ -45,6 +45,7 @@ public class Paaluokka {
 		}
 		System.out.println("Voit kirjoittaa 'tallenna' tallentaaksesi pelin tästä eteenpäin.");
 		System.out.println();
+		
 		//Loputon peli
 		while(true) {
 			lauta.tulostaLauta();

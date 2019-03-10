@@ -158,7 +158,7 @@ public class Lauta implements Serializable {
 		boolean havitty = true;
 		for (int i=0; i<lauta.length; i++) {
 			for (int j=0; j<lauta.length; j++) {
-				if (lauta[i][j] == "O")
+				if (lauta[i][j].equalsIgnoreCase("O"))
 					havitty = false;
 			}
 		}
