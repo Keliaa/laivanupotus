@@ -3,6 +3,7 @@ package org.laivanupotus;
 import org.laivanupotus.logiikka.Lauta;
 import org.laivanupotus.pelaaja.Ihmispelaaja;
 import org.laivanupotus.pelaaja.tekoaly.Tekoaly;
+import org.laivanupotus.tallennus.Tallennus;
 
 public class Paaluokka {
 	
@@ -31,22 +32,25 @@ public class Paaluokka {
 		//tulostetaan VAIN pelaajan lauta
 		//lauta.tulostaLauta();
 		
+		//Tallennus.tallennaLaudanTila(lauta);
+		//Tallennus.tallennaLaivojenTila(ihmispelaaja.annaLaivaLista());
+		
 		//Loputon peli
 		while(true) {
 			lauta.tulostaLauta();
-		ihmispelaaja.vuoro(lauta, tekoLauta, tekoaly);
-		if (tekoLauta.onkoHavinnyt()) {
-			System.out.println("Voitit pelin!");
-			break;
-		}
-		
-		tekoaly.vuoro(tekoLauta, lauta, ihmispelaaja);
-		tekoLauta.tulostaPiiloLauta();
-		
-		if (lauta.onkoHavinnyt()) {
-			System.out.println("Hävisit pelin!");
-			break;
-		}
+			ihmispelaaja.vuoro(lauta, tekoLauta, tekoaly);
+			if (tekoLauta.onkoHavinnyt()) {
+				System.out.println("Voitit pelin!");
+				break;
+			}
+			
+			tekoaly.vuoro(tekoLauta, lauta, ihmispelaaja);
+			tekoLauta.tulostaPiiloLauta();
+			
+			if (lauta.onkoHavinnyt()) {
+				System.out.println("Hävisit pelin!");
+				break;
+			}
 		}
 	}
 

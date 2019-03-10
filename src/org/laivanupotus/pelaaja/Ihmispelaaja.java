@@ -178,6 +178,11 @@ public int[][] arvoSijainnit(int laivanPituus, Lauta l) {
 		tekoaly.tarkastaLaivat(ruutu);
 	}
 	
+	//palauttaa listan laivoista
+	public ArrayList<Laiva> annaLaivaLista() {
+		return laivaLista;
+	}
+	
 	//Tarkastaa osuiko tekoäly yhteenkään laivaan. Jos osui, asetetaan laivaan osuma
 	public void tarkastaLaivat(int[] ruutu) {
 		for (Laiva l : laivaLista) {
