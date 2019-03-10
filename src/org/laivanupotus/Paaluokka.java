@@ -1,5 +1,6 @@
 package org.laivanupotus;
 
+import org.laivanupotus.logiikka.Laiva;
 import org.laivanupotus.logiikka.Lauta;
 import org.laivanupotus.pelaaja.Ihmispelaaja;
 import org.laivanupotus.pelaaja.tekoaly.Tekoaly;
@@ -29,6 +30,20 @@ public class Paaluokka {
 		if(lataa) {
 			tekoLauta = Lataus.lataaLaudanTila(true);
 			lauta = Lataus.lataaLaudanTila(false);
+			
+			/*
+			 * MIKSI PITÄÄ KUTSUA NÄIN MONTA METODIA ETTÄ SAA LAIVAN LAITETTUA?!?!?!??
+			 */
+			for (Laiva i : Lataus.lataaLaivojenTila(false)) {
+				lauta.asetaLaivaLaudalle(i);
+				ihmispelaaja.annaLaivaLista().add(i);
+				ihmispelaaja.asetaLaivaLista(Lataus.lataaLaivojenTila(false));
+			}
+			for (Laiva i : Lataus.lataaLaivojenTila(true)) {
+				tekoLauta.asetaLaivaLaudalle(i);
+				tekoaly.annaLaivaLista().add(i);
+				tekoaly.asetaLaivaLista(Lataus.lataaLaivojenTila(true));
+			}
 			lataa = false;
 		} else {
 		
