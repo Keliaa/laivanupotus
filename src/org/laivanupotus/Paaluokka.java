@@ -21,6 +21,7 @@ public class Paaluokka {
 		
 		//asetetaan laivat - pelaaja
 		ihmispelaaja.kysyLaivat(lauta);
+		
 		//asetetaan laivat - tekoäly
 		tekoaly.arvoLaivat(tekoLauta);
 		

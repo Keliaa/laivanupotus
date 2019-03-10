@@ -40,13 +40,22 @@ public class Lauta {
 	
 	public void asetaLaivaLaudalle(Laiva laiva) {
 		if(tarkistaKoordinaatit(laiva.annaMista(), laiva.annaMihin())) {
-			if(laiva.annaMihin()[0]>laiva.annaMista()[0]) {
+			if(laiva.annaMihin()[0]<laiva.annaMista()[0] || laiva.annaMihin()[1]<laiva.annaMista()[1]) {
+				int x = laiva.annaMihin()[0];
+				laiva.annaMihin()[0] = laiva.annaMista()[0];
+				laiva.annaMista()[0] = x;
+				x = laiva.annaMihin()[1];
+				laiva.annaMihin()[1] = laiva.annaMista()[1];
+				laiva.annaMista()[1] = x;
+			}
+			
+			if(laiva.annaMihin()[1]==laiva.annaMista()[1]) {
 				int a=laiva.annaMista()[1];
 				for(int i = laiva.annaMista()[0]; i<=laiva.annaMihin()[0]; i++) {
 					lauta[i][a]="O";
 				}
 			}
-			if(laiva.annaMihin()[1]>laiva.annaMista()[1]) {
+			if(laiva.annaMihin()[0]==laiva.annaMista()[0]) {
 				int a=laiva.annaMista()[0];
 				for(int i = laiva.annaMista()[1]; i<=laiva.annaMihin()[1]; i++) {
 					lauta[a][i]="O";
@@ -69,19 +78,24 @@ public class Lauta {
 	 */
 	public boolean tarkistaKoordinaatit(int[] mista, int[] mihin) {
 		boolean onkoLaiva = true;
+		
+		if(mihin[0]<mista[0] || mihin[1]<mista[1]) {
+			int x = mihin[0];
+			mihin[0] = mista[0];
+			mista[0] = x;
+			x = mihin[1];
+			mihin[1] = mista[1];
+			mista[1] = x;
+		}
+		
 		for(int i = mista[0]-1; i<= mihin[0]+1; i++) {
 	        if(onkoLaiva==false) {
 	        	break;
 	        }
-			if(mista[0]-1 >= 0 && mihin[0]+1 <= lauta.length-1){
-                for(int j = mista[1]-1; j<= mihin[1]+1; j++) {                	
-                
-                    if(mista[1]-1 >= 0 && mihin[1]+1 <= lauta[0].length-1) {
-
-                    	if(lauta[i][j].equals("~")) {
-                            onkoLaiva=true;
-                        }
-                    	if(lauta[i][j].equals("O") || lauta[i][j].equals("X")) {
+			if(i >= 0 && i <= lauta.length-1){
+                for(int j = mista[1]-1; j<= mihin[1]+1; j++) {
+                    if(j >= 0 && j <= lauta[0].length-1) {
+                    	if(this.lauta[i][j].equals("O") || this.lauta[i][j].equals("X")) {
                             onkoLaiva=false;
                             break;                           
                         }
@@ -101,6 +115,7 @@ public class Lauta {
 				System.out.println(taul[i]+"|" + lauta[i][0]+"|" +lauta[i][1]+"|" +lauta[i][2]+"|" +lauta[i][3]+"|" +lauta[i][4]+"|" +lauta[i][5]+"|" +lauta[i][6]+"|" +lauta[i][7]+"|" +lauta[i][8]+"|" +lauta[i][9]+"|");
 				
 		}
+		System.out.println();
 	}
 }
 

@@ -6,16 +6,18 @@ public class Laiva {
 	private int[] mista = new int[2];
 	private int[] mihin = new int[2];
 	private String[] koordinaatit;
+	private Lauta lauta;
 	
 	/*
 	 * konstruktori
 	 */
-	public Laiva(String nimi, int pituus, int mista[], int mihin[]) {
+	public Laiva(String nimi, int pituus, int mista[], int mihin[], Lauta lauta) {
 		this.pituus=pituus;
 		this.nimi=nimi;	
 		this.mista = mista;
 		this.mihin = mihin;
 		koordinaatit= new String[pituus];
+		this.lauta = lauta;
 	}
 
 	/*
