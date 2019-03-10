@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 
+import org.laivanupotus.Paaluokka;
 import org.laivanupotus.apuluokat.SyoteApu;
 import org.laivanupotus.logiikka.Laiva;
 import org.laivanupotus.logiikka.Lauta;
@@ -93,6 +94,29 @@ public class Ihmispelaaja extends Pelaaja {
 		}
 	}
 	
+	public void kysyLadataankoPeli() {
+		while(true) {
+			Scanner scanner = new Scanner(System.in);
+			
+			System.out.println("Haluatko ladata pelin? (K/E)");
+			String syote = scanner.nextLine();
+			
+			if (syote.equalsIgnoreCase("K")) {
+				Paaluokka.lataa = true;
+				break;
+			}
+			
+			else if (syote.equalsIgnoreCase("E")) {
+				Paaluokka.lataa = false;
+				break;
+			}
+			
+			else {
+				System.out.println("Vääränlainen syöte!");
+			}
+		}
+	}
+	
 	public void kysyLaivat(Lauta lauta) {
 		int[] laivaPituudet = new int[] {4, 3, 3, 2, 2, 2, 1, 1, 1, 1};
 		String[] laivanNimet = new String[] {"Lentotukialus", "Risteilijä", "Risteilijä", "Hävittäjä", "Hävittäjä", "Hävittäjä", "Sukellusvene", "Sukellusvene", "Sukellusvene", "Sukellusvene"};
@@ -116,6 +140,12 @@ public class Ihmispelaaja extends Pelaaja {
 			//Pyydetään syöte
 			System.out.println("Anna ruutu, johon haluat ampua");
 			kohderuutu = scanner.nextLine();
+			
+			if (kohderuutu.equalsIgnoreCase("tallenna")) {
+				Paaluokka.tallenna = true;
+				System.out.println("Peli tallennetaan seuraavan siirtosi jälkeen.");
+				continue;
+			}
 			
 			//Tarkastetaan onko syöte oikean tyyppinen
 			if (!SyoteApu.tarkistaSyote(kohderuutu)) {

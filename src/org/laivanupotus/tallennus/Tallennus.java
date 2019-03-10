@@ -40,7 +40,7 @@ public class Tallennus {
             ObjectOutputStream objectOut = new ObjectOutputStream(fileOut);
             objectOut.writeObject(serObj);
             objectOut.close();
-            System.out.println("Peli tallentui onnistuneesti.");
+            System.out.println("Peli tallentui onnistuneesti kansioon: " + filepath);
  
         } catch (Exception ex) {
         	System.out.println("Tallennuksessa meni jokin pieleen.");

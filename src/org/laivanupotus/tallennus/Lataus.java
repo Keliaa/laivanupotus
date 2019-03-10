@@ -1,6 +1,8 @@
 package org.laivanupotus.tallennus;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.util.ArrayList;
 
@@ -49,15 +51,23 @@ public class Lataus {
  
             Object obj = objectIn.readObject();
  
-            System.out.println("Lataus onnistui.");
+            System.out.println("Lataus onnistui kansioon: " + filepath);
             objectIn.close();
             return obj;
  
-        } catch (Exception ex) {
-        	System.out.println("Lataamisessa meni jokin pieleen.");
-            ex.printStackTrace();
+        } catch (FileNotFoundException ex) {
+        	System.out.println("Tallennuksia ei löydetty.");
+        	System.exit(-1);
             return null;
-        }
+        } catch (IOException e) {
+			e.printStackTrace();
+			System.exit(-1);
+            return null;
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+			System.exit(-1);
+            return null;
+		}
     }
 
 }

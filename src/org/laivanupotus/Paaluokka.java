@@ -8,29 +8,42 @@ import org.laivanupotus.tallennus.Tallennus;
 
 public class Paaluokka {
 	
-	//testi :D
+	public static boolean tallenna;
+	public static boolean lataa;
 	
 	public static void main(String[] args) {
-		lataaPeli();
-		//luodaan lauta
-		Lauta lauta = new Lauta();
-		
-		//luodaan teko‰lyn lauta. t‰t‰ ei sitten printata, muuten voi menn‰ pelaaminen liian helpoksi.
-		Lauta tekoLauta = new Lauta();
 		
 		//luodaan pelaaajat
 		Ihmispelaaja ihmispelaaja = new Ihmispelaaja("Testipelaaja");
 		Tekoaly tekoaly = new Tekoaly("Tekoaly");
 		
+		Lauta tekoLauta = null;
+		Lauta lauta = null;
+		
 		//Asetetaan teko‰lyn vaikeusaste
 		tekoaly.asetaVaikeus();
+		ihmispelaaja.kysyLadataankoPeli();
 		
-		//asetetaan laivat - pelaaja
-		ihmispelaaja.asetaLaivat(lauta);
+		if(lataa) {
+			lauta = Lataus.lataaLaudanTila(true);
+			lauta = Lataus.lataaLaudanTila(false);
+			lataa = false;
+		} else {
 		
-		//asetetaan laivat - teko‰ly
-		tekoaly.arvoLaivat(tekoLauta);
-		
+			//luodaan lauta
+			lauta = new Lauta();
+			
+			//luodaan teko‰lyn lauta. t‰t‰ ei sitten printata, muuten voi menn‰ pelaaminen liian helpoksi.
+			tekoLauta = new Lauta();
+			
+			//asetetaan laivat - pelaaja
+			ihmispelaaja.asetaLaivat(lauta);
+			
+			//asetetaan laivat - teko‰ly
+			tekoaly.arvoLaivat(tekoLauta);
+		}
+		System.out.println("Voit kirjoittaa 'tallenna' tallentaaksesi pelin t‰st‰ eteenp‰in.");
+		System.out.println();
 		//Loputon peli
 		while(true) {
 			lauta.tulostaLauta();
@@ -47,25 +60,20 @@ public class Paaluokka {
 				System.out.println("H‰visit pelin!");
 				break;
 			}
+			
+			if(tallenna) {
+				tallennaPeli(ihmispelaaja, tekoaly, lauta, tekoLauta);
+				tallenna = false;
+			}
+			
 		}
 	}
 	
-	/*n‰in ladataan molemmat laudat
-	 * metodia itsess‰‰n ei ole pakko k‰ytt‰‰ t‰‰ on esimerkki
-	 */
-	public static void lataaPeli() {
-		Lauta tekolauta = Lataus.lataaLaudanTila(true);
-		Lauta lauta = Lataus.lataaLaudanTila(false);
-	}
-	
-	/*'
-	 * t‰‰ on vaa esimerkki et mite ne ladataa
-	 */
-	public static void lataaLaivat() {
-		Ihmispelaaja ihmispelaaja = new Ihmispelaaja("Testipelaaja");
-		Tekoaly tekoaly = new Tekoaly("Tekoaly");
-		ihmispelaaja.asetaLaivaLista(Lataus.lataaLaivojenTila(false));
-		tekoaly.asetaLaivaLista(Lataus.lataaLaivojenTila(true));
+	public static void tallennaPeli(Ihmispelaaja ihmispelaaja, Tekoaly tekoaly, Lauta lauta, Lauta tekolauta) {
+		Tallennus.tallennaLaivojenTila(ihmispelaaja.annaLaivaLista(), false);
+		Tallennus.tallennaLaivojenTila(tekoaly.annaLaivaLista(), true);
+		Tallennus.tallennaLaudanTila(lauta, false);
+		Tallennus.tallennaLaudanTila(tekolauta, true);
 	}
 
 }
