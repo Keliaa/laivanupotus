@@ -7,14 +7,16 @@ import java.util.Scanner;
 import org.laivanupotus.apuluokat.SyoteApu;
 import org.laivanupotus.logiikka.Laiva;
 import org.laivanupotus.logiikka.Lauta;
+import org.laivanupotus.pelaaja.Ihmispelaaja;
 import org.laivanupotus.pelaaja.Pelaaja;
 
 public class Tekoaly extends Pelaaja {
 	
-	private ArrayList<Laiva> laivaLista = new ArrayList<Laiva>();
+	private ArrayList<Laiva> laivaLista; 
 
 	public Tekoaly(String nimi) {
 		super(nimi);
+		laivaLista = new ArrayList<Laiva>();
 	}
 	
 	//t‰nne sit‰ teko‰lyn toiminnallisuutta
@@ -71,7 +73,7 @@ public class Tekoaly extends Pelaaja {
 	}
 	
 	//Ampuu satunnaiseen ruutuun
-		public void vuoro(Lauta tekoLauta, Lauta lauta) {
+		public void vuoro(Lauta tekoLauta, Lauta lauta, Ihmispelaaja ihmispelaaja) {
 			
 			Random rand = new Random();
 			int[] kohderuutu = new int[2];
@@ -89,18 +91,16 @@ public class Tekoaly extends Pelaaja {
 				else break;
 			}
 			
-			ammu(kohderuutu, lauta);
-			lauta.tulostaLauta();
+			ammu(kohderuutu, lauta, ihmispelaaja);
 		}
 		
 		//Asettaa ruudun merkiksi "X" ja tarkistaa oliko osuma
-		public void ammu(int[] ruutu, Lauta lauta) {
+		public void ammu(int[] ruutu, Lauta lauta, Ihmispelaaja ihmispelaaja) {
 			lauta.asetaAmmuttuRuutu(ruutu);
-			for (Laiva l : laivaLista) {
-				l.tarkastaOsuma(ruutu);
-			}
+			ihmispelaaja.tarkastaLaivat(ruutu);
 		}
 		
+		//Tarkastaa osuttiinko yhteenk‰‰n laivaan, ja kommentoidaan asianmukaisesti
 		public void tarkastaLaivat(int[] ruutu) {
 			for (Laiva l : laivaLista) {
 				if (l.tarkastaOsuma(ruutu)) {

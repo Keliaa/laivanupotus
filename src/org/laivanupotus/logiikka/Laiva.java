@@ -96,6 +96,7 @@ public class Laiva {
 	
 	/*
 	 * metodi vertaa ammuttua koordinaattia laivan koordinaatteihin
+	 * asettaa osutut koordinaatit -1, jos osuu
 	 * @return true, jos osuu
 	 * @return false muuten
 	 */
@@ -120,7 +121,9 @@ public class Laiva {
 		for(int i=0; i<koordinaatit.length; i++) {
 			if(koordinaatit[i][0] == -1) {
 				continue;
-			}else {
+			}
+			
+			else {
 				kuolema = false;
 				break;
 			}

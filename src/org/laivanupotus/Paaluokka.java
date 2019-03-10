@@ -21,7 +21,9 @@ public class Paaluokka {
 		
 		//asetetaan laivat - pelaaja
 		//ihmispelaaja.kysyLaivat(lauta);
-		tekoaly.arvoLaivat(lauta);
+		
+		//arvotaan ihmispelaajan laivat
+		ihmispelaaja.arvoLaivat(lauta);
 		
 		//asetetaan laivat - tekoäly
 		tekoaly.arvoLaivat(tekoLauta);
@@ -32,7 +34,8 @@ public class Paaluokka {
 		//Loputon peli
 		while(true) {
 		ihmispelaaja.vuoro(lauta, tekoLauta, tekoaly);
-		tekoaly.vuoro(tekoLauta, lauta);
+		tekoaly.vuoro(tekoLauta, lauta, ihmispelaaja);
+		lauta.tulostaLauta();
 		}
 	}
 

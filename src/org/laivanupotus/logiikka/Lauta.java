@@ -122,6 +122,8 @@ public class Lauta {
 		return lauta[a[0]][a[1]];
 	}
 	
+	
+	//Tarkastaa onko laudan pelaaja hävinnyt pelin
 	public boolean onkoHavinnyt() {
 		boolean havitty = true;
 		for (int i=0; i<lauta.length; i++) {
