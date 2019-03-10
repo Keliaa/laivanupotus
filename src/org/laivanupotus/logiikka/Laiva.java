@@ -90,25 +90,6 @@ public class Laiva {
 			}
 		}
 		return palautus;
-		
-		/*int a=0;
-		if(mihin[0]>mista[0]) {//jos laiva on pystysuorassa (eli A3 ja A:n arvo muuttuu)
-			int b= mista[1];
-			for(int i=0; i<mihin[0]-mista[0];i ++) {
-				a=mista[0]+i;
-				koordinaatit[i][0] = a;
-				koordinaatit[i][1] = b;
-			}
-		}
-		if(mihin[1]>mista[1]) { //Jos laiva on vaakasuorassa(eli 3A ja A:n arvo muuttuu)
-
-			int c= mista[0];
-			for(int i=0; i<=mihin[1]-mista[1];i++) {
-				a=mista[1]+i;
-				koordinaatit[i][0] = c;
-				koordinaatit[i][1] = a;
-			}
-		}*/
 	}
 	
 	

@@ -117,12 +117,21 @@ public class Lauta {
 		}
 		System.out.println();
 	}
-	
 	//Palauttaa merkin koordinaattien kohdasta
 	public String annaMerkki(int[] a) {
 		return lauta[a[0]][a[1]];
 	}
 	
+	public boolean onkoHavinnyt() {
+		boolean havitty = true;
+		for (int i=0; i<lauta.length; i++) {
+			for (int j=0; j<lauta.length; j++) {
+				if (lauta[i][j] == "O")
+					havitty = false;
+			}
+		}
+		return havitty;
+	}
 }
 
 		
