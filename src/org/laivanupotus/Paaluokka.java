@@ -19,6 +19,9 @@ public class Paaluokka {
 		Ihmispelaaja ihmispelaaja = new Ihmispelaaja("Testipelaaja");
 		Tekoaly tekoaly = new Tekoaly("Tekoaly");
 		
+		//Asetetaan tekoälyn vaikeusaste
+		tekoaly.asetaVaikeus();
+		
 		//asetetaan laivat - pelaaja
 		ihmispelaaja.asetaLaivat(lauta);
 		

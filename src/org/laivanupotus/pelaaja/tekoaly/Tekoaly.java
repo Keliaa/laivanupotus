@@ -12,11 +12,13 @@ import org.laivanupotus.pelaaja.Pelaaja;
 
 public class Tekoaly extends Pelaaja {
 	
+	private int vaikeus;
 	private ArrayList<Laiva> laivaLista; 
 
 	public Tekoaly(String nimi) {
 		super(nimi);
 		laivaLista = new ArrayList<Laiva>();
+		this.vaikeus = 1;
 	}
 	
 	//tänne sitä tekoälyn toiminnallisuutta
@@ -84,6 +86,15 @@ public class Tekoaly extends Pelaaja {
 				
 				//Tarkastetaan onko jo ammuttu tähän ruutuun
 				if(lauta.annaMerkki(kohderuutu).equals("X")) {
+					continue;
+				}
+				
+				else if(vaikeus == 2) {
+					if(lauta.annaMerkki(kohderuutu).equals("~") && rand.nextInt(10)>2) {
+						continue;
+					}
+					
+					else break;
 				}
 				
 				else break;
@@ -110,6 +121,33 @@ public class Tekoaly extends Pelaaja {
 			}
 			if (huti)
 				System.out.println("Huti!");
+		}
+		
+		//Kysyy pelaajalta vaikeusasteen ja asettaa sen muuttujaan vaikeus
+		public void asetaVaikeus() {
+			while(true) {
+				Scanner scanner = new Scanner(System.in);
+				
+				System.out.println("Valitse vaikeusaste syöttämällä numero");
+				System.out.println("1 - Helppo");
+				System.out.println("2 - Vaikea");
+				
+				String syote = scanner.nextLine();
+				
+				if (syote.equals("1")) {
+					vaikeus = 1;
+					break;
+				}
+				
+				else if (syote.equals("2")) {
+					vaikeus = 2;
+					break;
+				}
+				
+				else {
+					System.out.println("Vääränlainen syöte!");
+				}
+			}
 		}
 
 }
