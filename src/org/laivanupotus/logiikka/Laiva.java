@@ -1,6 +1,8 @@
 package org.laivanupotus.logiikka;
 
-public class Laiva {
+import java.io.Serializable;
+
+public class Laiva implements Serializable {
 	protected final int pituus;
 	protected final String nimi;
 	private int[] mista = new int[2];

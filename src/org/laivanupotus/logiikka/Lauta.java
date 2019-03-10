@@ -1,6 +1,8 @@
 package org.laivanupotus.logiikka;
 
-public class Lauta {
+import java.io.Serializable;
+
+public class Lauta implements Serializable {
 	private String lauta[][];
 	
 	
@@ -146,6 +148,9 @@ public class Lauta {
 		return lauta[a[0]][a[1]];
 	}
 	
+	public String[][] annaLauta() {
+		return lauta;
+	}
 	
 	//Tarkastaa onko laudan pelaaja hävinnyt pelin
 	public boolean onkoHavinnyt() {

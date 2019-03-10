@@ -1,5 +1,6 @@
 package org.laivanupotus.pelaaja.tekoaly;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
@@ -121,6 +122,11 @@ public class Tekoaly extends Pelaaja {
 			}
 			if (huti)
 				System.out.println("Huti!");
+		}
+		
+		//palauttaa listan laivoista
+		public ArrayList<Laiva> annaLaivaLista() {
+			return laivaLista;
 		}
 		
 		//Kysyy pelaajalta vaikeusasteen ja asettaa sen muuttujaan vaikeus
