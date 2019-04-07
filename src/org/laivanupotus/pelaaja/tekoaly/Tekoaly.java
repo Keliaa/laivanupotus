@@ -16,7 +16,7 @@ public class Tekoaly extends Pelaaja {
 	}
 	
 	//Ampuu satunnaiseen ruutuun
-		public void vuoro(Lauta tekoLauta, Lauta lauta, Pelaaja ihmispelaaja) {
+		public void vuoro(Lauta omaLauta, Lauta vastusLauta, Pelaaja ihmispelaaja) {
 			
 			Random rand = new Random();
 			int[] kohderuutu = new int[2];
@@ -26,12 +26,12 @@ public class Tekoaly extends Pelaaja {
 				kohderuutu[1] = rand.nextInt(10);
 				
 				//Tarkastetaan onko jo ammuttu tähän ruutuun
-				if(lauta.annaMerkki(kohderuutu).equals("X")) {
+				if(vastusLauta.annaMerkki(kohderuutu).equals("X")) {
 					continue;
 				}
 				
 				else if(vaikeus == 2) { //Jos vaikeusaste on vaikea, yritetään todennäköisemmin ampua laivaan
-					if(lauta.annaMerkki(kohderuutu).equals("~") && rand.nextInt(10)>2) {
+					if(vastusLauta.annaMerkki(kohderuutu).equals("~") && rand.nextInt(10)>2) {
 						continue;
 					}
 					
@@ -41,12 +41,12 @@ public class Tekoaly extends Pelaaja {
 				else break;
 			}
 			
-			ammu(kohderuutu, lauta, ihmispelaaja);
+			ammu(kohderuutu, vastusLauta, ihmispelaaja);
 		}
 		
 		//Asettaa ruudun merkiksi "X" ja tarkistaa oliko osuma
-		public void ammu(int[] ruutu, Lauta lauta, Pelaaja pelaaja1) {
-			lauta.asetaAmmuttuRuutu(ruutu);
+		public void ammu(int[] ruutu, Lauta lauta1, Pelaaja pelaaja1) {
+			lauta1.asetaAmmuttuRuutu(ruutu);
 			pelaaja1.tarkastaLaivat(ruutu, false);
 		}
 		

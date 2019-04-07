@@ -138,11 +138,11 @@ public class Ihmispelaaja extends Pelaaja {
 	
 	//Pyyt‰‰ ruudun, tarkastaa voiko ruutuun ampua, jos voi niin ampuu
 	@SuppressWarnings("resource")
-	public void vuoro(Lauta lauta1, Lauta lauta2, Pelaaja pelaaja2) {
+	public void vuoro(Lauta omaLauta, Lauta vastusLauta, Pelaaja pelaaja2) {
 		String kohderuutu = "";
 		
-		lauta2.tulostaPiiloLauta();
-		lauta1.tulostaLauta();
+		vastusLauta.tulostaPiiloLauta();
+		omaLauta.tulostaLauta();
 		
 		while(true) {
 			Scanner scanner = new Scanner(System.in);
@@ -164,7 +164,7 @@ public class Ihmispelaaja extends Pelaaja {
 			}
 			
 			//Tarkastetaan onko jo ammuttu t‰h‰n ruutuun
-			else if(lauta2.annaMerkki(apuri.muunnaKoordinaateiksi(kohderuutu)).equals("X")) {
+			else if(vastusLauta.annaMerkki(apuri.muunnaKoordinaateiksi(kohderuutu)).equals("X")) {
 				System.out.println("T‰h‰n ruutuun on jo ammuttu!");
 				System.out.println();
 			}
@@ -172,7 +172,7 @@ public class Ihmispelaaja extends Pelaaja {
 			else break;
 		}
 		
-		ammu(apuri.muunnaKoordinaateiksi(kohderuutu), lauta2, pelaaja2);
+		ammu(apuri.muunnaKoordinaateiksi(kohderuutu), vastusLauta, pelaaja2);
 	}
 	
 	//Asettaa ruudun merkiksi "X"

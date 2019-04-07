@@ -76,15 +76,15 @@ public class Paaluokka {
 		//Pelataan!
 		while(true) {
 			if (pelaaja1 instanceof Ihmispelaaja) ((Ihmispelaaja)pelaaja1).vuoro(lauta1, lauta2, pelaaja2);
-			else ((Tekoaly)pelaaja1).vuoro(lauta2, lauta1, pelaaja1);
+			else ((Tekoaly)pelaaja1).vuoro(lauta1, lauta2, pelaaja2);
 			
 			if (lauta2.onkoHavinnyt()) {
 				System.out.println("Pelaaja 1 voitti pelin!");
 				break;
 			}
 			
-			if (pelaaja1 instanceof Ihmispelaaja) ((Ihmispelaaja)pelaaja2).vuoro(lauta2, lauta1, pelaaja1);
-			else ((Tekoaly)pelaaja2).vuoro(lauta1, lauta2, pelaaja2);
+			if (pelaaja2 instanceof Ihmispelaaja) ((Ihmispelaaja)pelaaja2).vuoro(lauta2, lauta1, pelaaja1);
+			else ((Tekoaly)pelaaja2).vuoro(lauta2, lauta1, pelaaja1);
 			if (lauta1.onkoHavinnyt()) {
 				System.out.println("Pelaaja 2 voitti pelin!");
 				break;
