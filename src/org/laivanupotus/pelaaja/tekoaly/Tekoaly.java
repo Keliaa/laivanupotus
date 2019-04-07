@@ -3,9 +3,7 @@ package org.laivanupotus.pelaaja.tekoaly;
 import java.util.Random;
 import java.util.Scanner;
 
-import org.laivanupotus.logiikka.Laiva;
 import org.laivanupotus.logiikka.Lauta;
-import org.laivanupotus.pelaaja.Ihmispelaaja;
 import org.laivanupotus.pelaaja.Pelaaja;
 
 public class Tekoaly extends Pelaaja {
@@ -47,32 +45,18 @@ public class Tekoaly extends Pelaaja {
 		}
 		
 		//Asettaa ruudun merkiksi "X" ja tarkistaa oliko osuma
-		public void ammu(int[] ruutu, Lauta lauta, Pelaaja ihmispelaaja) {
+		public void ammu(int[] ruutu, Lauta lauta, Pelaaja pelaaja1) {
 			lauta.asetaAmmuttuRuutu(ruutu);
-			((Ihmispelaaja)ihmispelaaja).tarkastaLaivat(ruutu);
-		}
-		
-		//Tarkastaa osuttiinko yhteenkään laivaan, ja kommentoidaan asianmukaisesti
-		public void tarkastaLaivat(int[] ruutu) {
-			boolean huti = true;
-			for (Laiva l : annaLaivaLista()) {
-				if (l.tarkastaOsuma(ruutu)) {
-					huti = false;
-					if(l.onkoLaivaUponnut()) System.out.println("Osui ja upposi!");
-					else System.out.println("Osuma!");
-				}
-			}
-			if (huti)
-				System.out.println("Huti!");
+			pelaaja1.tarkastaLaivat(ruutu, false);
 		}
 		
 		//Kysyy pelaajalta vaikeusasteen ja asettaa sen muuttujaan vaikeus
 		@SuppressWarnings("resource")
-		public void asetaVaikeus() {
+		public void asetaVaikeus(int pelaajaNumero) {
 			while(true) {
 				Scanner scanner = new Scanner(System.in);
 				
-				System.out.println("Valitse vaikeusaste syöttämällä numero");
+				System.out.println("Valitse vaikeusaste pelaajalle " + pelaajaNumero + " syöttämällä numero");
 				System.out.println("1 - Helppo");
 				System.out.println("2 - Vaikea");
 				

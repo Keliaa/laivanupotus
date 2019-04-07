@@ -1,5 +1,6 @@
 package org.laivanupotus;
 
+import org.laivanupotus.apuluokat.Apu;
 import org.laivanupotus.logiikka.Laiva;
 import org.laivanupotus.logiikka.Lauta;
 import org.laivanupotus.pelaaja.Ihmispelaaja;
@@ -15,73 +16,82 @@ public class Paaluokka {
 	
 	public static void main(String[] args) {
 		
+		Apu apuri = new Apu();
+		
 		//piirret‰‰n laiva
-		piirraLaiva();
+		apuri.piirraLaiva();
 		
 		//luodaan pelaaajat
-		Pelaaja ihmispelaaja = new Ihmispelaaja("Testipelaaja");
-		Pelaaja tekoaly = new Tekoaly("Tekoaly");
+		Pelaaja pelaaja1;
+		if (apuri.kysyPelaaja(1)) pelaaja1 = new Ihmispelaaja("Pelaaja 1");
+		else pelaaja1 = new Tekoaly("Teko‰ly 1");
+		Pelaaja pelaaja2;
+		if (apuri.kysyPelaaja(2)) pelaaja2 = new Ihmispelaaja("Pelaaja 2");
+		else pelaaja2 = new Tekoaly("Teko‰ly 2");
 		
 		//Luodaan laudat
-		Lauta tekoLauta = null;
-		Lauta lauta = null;
+		Lauta lauta1 = null;
+		Lauta lauta2 = null;
 		
 		//Asetetaan teko‰lyn vaikeusaste
-		((Tekoaly)tekoaly).asetaVaikeus();
-		((Ihmispelaaja)ihmispelaaja).kysyLadataankoPeli();
+		if (pelaaja1 instanceof Tekoaly) ((Tekoaly)pelaaja1).asetaVaikeus(1);
+		if (pelaaja2 instanceof Tekoaly) ((Tekoaly)pelaaja2).asetaVaikeus(2);
+		
+		//Kysyt‰‰n ladataanko peli
+		if (pelaaja1 instanceof Ihmispelaaja) ((Ihmispelaaja)pelaaja1).kysyLadataankoPeli();
+		else if (pelaaja2 instanceof Ihmispelaaja) ((Ihmispelaaja)pelaaja2).kysyLadataankoPeli();
 		
 		//Lautojen asettelua
 		if(lataa) {
-			tekoLauta = Lataus.lataaLaudanTila(true);
-			lauta = Lataus.lataaLaudanTila(false);
+			lauta1 = Lataus.lataaLaudanTila(true);
+			lauta2 = Lataus.lataaLaudanTila(false);
 			
 			//Asetetaan laivat laudalle ja listoihin
 			for (Laiva i : Lataus.lataaLaivojenTila(false)) {
-				lauta.asetaLaivaLaudalle(i);
-				ihmispelaaja.annaLaivaLista().add(i);
-				ihmispelaaja.asetaLaivaLista(Lataus.lataaLaivojenTila(false));
+				lauta1.asetaLaivaLaudalle(i);
+				pelaaja1.annaLaivaLista().add(i);
+				pelaaja1.asetaLaivaLista(Lataus.lataaLaivojenTila(false));
 			}
 			for (Laiva i : Lataus.lataaLaivojenTila(true)) {
-				tekoLauta.asetaLaivaLaudalle(i);
-				tekoaly.annaLaivaLista().add(i);
-				tekoaly.asetaLaivaLista(Lataus.lataaLaivojenTila(true));
+				lauta2.asetaLaivaLaudalle(i);
+				pelaaja2.annaLaivaLista().add(i);
+				pelaaja2.asetaLaivaLista(Lataus.lataaLaivojenTila(true));
 			}
 			lataa = false;
 		} else {
-		
-			lauta = new Lauta();
 			
-			//luodaan teko‰lyn lauta. t‰t‰ ei sitten printata, muuten voi menn‰ pelaaminen liian helpoksi.
-			tekoLauta = new Lauta();
+			//luodaan laudat
+			lauta1 = new Lauta();
+			lauta2 = new Lauta();
 			
-			//asetetaan laivat - pelaaja
-			((Ihmispelaaja)ihmispelaaja).asetaLaivat(lauta);
-			
-			//asetetaan laivat - teko‰ly
-			tekoaly.arvoLaivat(tekoLauta);
+			//asetetaan laivat laudalle
+			if (pelaaja1 instanceof Tekoaly) ((Tekoaly)pelaaja1).arvoLaivat(lauta1);
+			else ((Ihmispelaaja)pelaaja1).asetaLaivat(lauta1);
+			if (pelaaja2 instanceof Tekoaly) ((Tekoaly)pelaaja2).arvoLaivat(lauta2);
+			else ((Ihmispelaaja)pelaaja2).asetaLaivat(lauta2);
 		}
 		System.out.println("Voit kirjoittaa 'tallenna' tallentaaksesi pelin t‰st‰ eteenp‰in.");
 		System.out.println();
 		
 		//Pelataan!
 		while(true) {
-			lauta.tulostaLauta();
-			((Ihmispelaaja)ihmispelaaja).vuoro(lauta, tekoLauta, tekoaly);
-			if (tekoLauta.onkoHavinnyt()) {
-				System.out.println("Voitit pelin!");
+			if (pelaaja1 instanceof Ihmispelaaja) ((Ihmispelaaja)pelaaja1).vuoro(lauta1, lauta2, pelaaja2);
+			else ((Tekoaly)pelaaja1).vuoro(lauta2, lauta1, pelaaja1);
+			
+			if (lauta2.onkoHavinnyt()) {
+				System.out.println("Pelaaja 1 voitti pelin!");
 				break;
 			}
 			
-			((Tekoaly)tekoaly).vuoro(tekoLauta, lauta, ihmispelaaja);
-			tekoLauta.tulostaPiiloLauta();
-			
-			if (lauta.onkoHavinnyt()) {
-				System.out.println("H‰visit pelin!");
+			if (pelaaja1 instanceof Ihmispelaaja) ((Ihmispelaaja)pelaaja2).vuoro(lauta2, lauta1, pelaaja1);
+			else ((Tekoaly)pelaaja2).vuoro(lauta1, lauta2, pelaaja2);
+			if (lauta1.onkoHavinnyt()) {
+				System.out.println("Pelaaja 2 voitti pelin!");
 				break;
 			}
 			
 			if(tallenna) {
-				tallennaPeli(ihmispelaaja, tekoaly, lauta, tekoLauta);
+				tallennaPeli(pelaaja1, pelaaja2, lauta1, lauta2);
 				tallenna = false;
 			}
 			
@@ -95,19 +105,4 @@ public class Paaluokka {
 		Tallennus.tallennaLaudanTila(lauta, false);
 		Tallennus.tallennaLaudanTila(tekolauta, true);
 	}
-	
-	//Piirt‰‰ ascii laivan
-	public static void piirraLaiva() {
-    	System.out.println("              |    |    |                 ");
-    	System.out.println(" Laivan      )_)  )_)  )_)              ");
-    	System.out.println("  Upotus    )___))___))___)\\            ");
-    	System.out.println("    1.0    )____)____)_____)\\\\");
-    	System.out.println("         _____|____|____|____\\\\\\__");
-    	System.out.println("---------\\                   /---------");
-    	System.out.println("  ^^^^^ ^^^^^^^^^^^^^^^^^^^^^");
-    	System.out.println("");
-    	System.out.println("    ^^^^      ^^^^     ^^^    ^^");
-    	System.out.println("         ^^^^      ^^^");
-    }
-
 }

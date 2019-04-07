@@ -3,12 +3,13 @@ package org.laivanupotus.pelaaja;
 import java.util.Scanner;
 
 import org.laivanupotus.Paaluokka;
-import org.laivanupotus.apuluokat.SyoteApu;
+import org.laivanupotus.apuluokat.Apu;
 import org.laivanupotus.logiikka.Laiva;
 import org.laivanupotus.logiikka.Lauta;
-import org.laivanupotus.pelaaja.tekoaly.Tekoaly;
 
 public class Ihmispelaaja extends Pelaaja {
+	
+	Apu apuri = new Apu();
 	
 	public Ihmispelaaja(String nimi) {
 		super(nimi);
@@ -44,19 +45,19 @@ public class Ihmispelaaja extends Pelaaja {
 			
 				
 			//Tarkastetaan onko syöte oikean tyyppinen
-			if (!SyoteApu.tarkistaSyote(aloitusruutu) || !SyoteApu.tarkistaSyote(lopetusruutu)) {
+			if (!apuri.tarkistaSyote(aloitusruutu) || !apuri.tarkistaSyote(lopetusruutu)) {
 				System.out.println("Väärän tyyppinen syöte. Anna ruudut muodossa 'A0'");
 				System.out.println();
 			} 
 			
 			//Tarkastetaan onko syötetty laiva oikean pituinen ja suora
-			else if (!SyoteApu.tarkistaPituus(SyoteApu.muunnaKoordinaateiksi(aloitusruutu), SyoteApu.muunnaKoordinaateiksi(lopetusruutu), laivanPituus)){
+			else if (!apuri.tarkistaPituus(apuri.muunnaKoordinaateiksi(aloitusruutu), apuri.muunnaKoordinaateiksi(lopetusruutu), laivanPituus)){
 				System.out.println("Väärän pituinen tai epäsuora laiva!");
 				System.out.println();
 			}
 			
 			//Tarkaseetaan tulisiko päällekkäisiä/vierekkäisiä laivoja
-			else if (!lauta.tarkistaKoordinaatit(SyoteApu.muunnaKoordinaateiksi(aloitusruutu), SyoteApu.muunnaKoordinaateiksi(lopetusruutu))){
+			else if (!lauta.tarkistaKoordinaatit(apuri.muunnaKoordinaateiksi(aloitusruutu), apuri.muunnaKoordinaateiksi(lopetusruutu))){
 				System.out.println("Laivat eivät saa koskettaa toisiaan!");
 				System.out.println();
 			}
@@ -64,8 +65,8 @@ public class Ihmispelaaja extends Pelaaja {
 			else break;
 		}
 			
-		int[] alkuKoordinaatti = SyoteApu.muunnaKoordinaateiksi(aloitusruutu);
-		int[] loppuKoordinaatti = SyoteApu.muunnaKoordinaateiksi(lopetusruutu);
+		int[] alkuKoordinaatti = apuri.muunnaKoordinaateiksi(aloitusruutu);
+		int[] loppuKoordinaatti = apuri.muunnaKoordinaateiksi(lopetusruutu);
 		return new int[][] {alkuKoordinaatti, loppuKoordinaatti};
 	}
 
@@ -75,6 +76,7 @@ public class Ihmispelaaja extends Pelaaja {
 		while(true) {
 			Scanner scanner = new Scanner(System.in);
 			
+			System.out.println(this.annaNimi() + ":");
 			System.out.println("Syötä '1' asettaaksesi laivat laudalle manuaalisesti.");
 			System.out.println("Syötä '2' arpoaksesi laivojen sijainnit.");
 			String syote = scanner.nextLine();
@@ -136,14 +138,17 @@ public class Ihmispelaaja extends Pelaaja {
 	
 	//Pyytää ruudun, tarkastaa voiko ruutuun ampua, jos voi niin ampuu
 	@SuppressWarnings("resource")
-	public void vuoro(Lauta lauta, Lauta tekoLauta, Pelaaja tekoaly) {
+	public void vuoro(Lauta lauta1, Lauta lauta2, Pelaaja pelaaja2) {
 		String kohderuutu = "";
+		
+		lauta2.tulostaPiiloLauta();
+		lauta1.tulostaLauta();
 		
 		while(true) {
 			Scanner scanner = new Scanner(System.in);
 			
 			//Pyydetään syöte
-			System.out.println("Anna ruutu, johon haluat ampua");
+			System.out.println(this.annaNimi() + ": Anna ruutu, johon haluat ampua");
 			kohderuutu = scanner.nextLine();
 			
 			if (kohderuutu.equalsIgnoreCase("tallenna")) {
@@ -153,13 +158,13 @@ public class Ihmispelaaja extends Pelaaja {
 			}
 			
 			//Tarkastetaan onko syöte oikean tyyppinen
-			if (!SyoteApu.tarkistaSyote(kohderuutu)) {
+			if (!apuri.tarkistaSyote(kohderuutu)) {
 				System.out.println("Väärän tyyppinen syöte. Anna ruutu muodossa 'A0'");
 				System.out.println();
 			}
 			
 			//Tarkastetaan onko jo ammuttu tähän ruutuun
-			else if(tekoLauta.annaMerkki(SyoteApu.muunnaKoordinaateiksi(kohderuutu)).equals("X")) {
+			else if(lauta2.annaMerkki(apuri.muunnaKoordinaateiksi(kohderuutu)).equals("X")) {
 				System.out.println("Tähän ruutuun on jo ammuttu!");
 				System.out.println();
 			}
@@ -167,21 +172,14 @@ public class Ihmispelaaja extends Pelaaja {
 			else break;
 		}
 		
-		ammu(SyoteApu.muunnaKoordinaateiksi(kohderuutu), tekoLauta, tekoaly);
+		ammu(apuri.muunnaKoordinaateiksi(kohderuutu), lauta2, pelaaja2);
 	}
 	
 	//Asettaa ruudun merkiksi "X"
 	//Tsekkaa osumat ja uponneet ja kommentoi asianmukaisesti
-	public void ammu(int[] ruutu, Lauta tekoLauta, Pelaaja tekoaly) {
-		tekoLauta.asetaAmmuttuRuutu(ruutu);
-		((Tekoaly)tekoaly).tarkastaLaivat(ruutu);
-	}
-	
-	//Tarkastaa osuiko tekoäly yhteenkään laivaan. Jos osui, asetetaan laivaan osuma
-	public void tarkastaLaivat(int[] ruutu) {
-		for (Laiva l : annaLaivaLista()) {
-			l.tarkastaOsuma(ruutu);
-		}
+	public void ammu(int[] ruutu, Lauta lauta2, Pelaaja pelaaja2) {
+		lauta2.asetaAmmuttuRuutu(ruutu);
+		pelaaja2.tarkastaLaivat(ruutu, true);
 	}
 	
 }

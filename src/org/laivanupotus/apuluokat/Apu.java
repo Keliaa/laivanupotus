@@ -1,11 +1,34 @@
 package org.laivanupotus.apuluokat;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.Scanner;
 
-public class SyoteApu {
+
+public class Apu {
+	
+	Scanner scanner = new Scanner(System.in);
+	
+	//Kysyy onko pelaaja ihminen vai kone. Palauttaa true jos ihminen, false jos kone
+	//Parametrina pelaajan numero
+	public boolean kysyPelaaja(int pelaajaNumero) {
+		while (true) {
+			System.out.println("Pelaaja " + pelaajaNumero +  ", oletko ihmispelaaja vai tekoäly? \n1 - Ihmispelaaja \n2 - Tekoäly");
+			String syote = scanner.nextLine();
+			
+			if (syote.equals("1")) {
+				return true;
+			}
+			else if (syote.equals("2")) {
+				return false;
+			}		
+			else {
+				System.out.println("Vääränlainen syöte!");
+			}
+		}
+	}
 	
 	//Tarkistaa onko syöte muotoa kirjainNumero, esim "A0"
-	public static boolean tarkistaSyote(String s){		
+	public boolean tarkistaSyote(String s){		
 		String regex = "^[a-jA-J]+[0-9]";
 		
 		Pattern pattern = Pattern.compile(regex);
@@ -18,7 +41,7 @@ public class SyoteApu {
 	}
 	
 	//Tarkistaa että käyttäjän syöttämä laiva on oikean pituinen ja suora
-	public static boolean tarkistaPituus(int[] alku, int[] loppu, int pituus) {
+	public boolean tarkistaPituus(int[] alku, int[] loppu, int pituus) {
 		if (alku[0] != loppu[0] && alku[1] != loppu[1]) return false;
 		
 		if (Math.abs(loppu[0]-alku[0]+loppu[1]-alku[1]) + 1 != pituus) return false;
@@ -27,7 +50,7 @@ public class SyoteApu {
 	}
 	
 	//Muuttaa syöteruudun tyypistä String tyyppiin int[]. Esim "A0" -> {0,0}
-	public static int[] muunnaKoordinaateiksi(String s) {
+	public int[] muunnaKoordinaateiksi(String s) {
 		int[] palautus = new int[2];
 		palautus[0] = muunnaNumeroksi(s.substring(0,1));
 		try {
@@ -40,7 +63,7 @@ public class SyoteApu {
 	
 	//Muuttaa kirjaimen a-j numeroksi 0-9
 	//Syöte kirjain a-j tyyppiä String
-	public static int muunnaNumeroksi(String s) {
+	public int muunnaNumeroksi(String s) {
 		int palautus = 0;
 		if (s.toLowerCase().equals("a")) palautus = 0;
 		else if (s.toLowerCase().equals("b")) palautus = 1;
@@ -55,4 +78,19 @@ public class SyoteApu {
 		else System.out.println("mitäs mitäs?? Palautetaan 0");
 		return palautus;
 	}
+	
+	//Piirtää ascii laivan
+		public void piirraLaiva() {
+	    	System.out.println("              |    |    |                 ");
+	    	System.out.println(" Laivan      )_)  )_)  )_)              ");
+	    	System.out.println("  Upotus    )___))___))___)\\            ");
+	    	System.out.println("    1.2    )____)____)_____)\\\\");
+	    	System.out.println("         _____|____|____|____\\\\\\__");
+	    	System.out.println("---------\\                   /---------");
+	    	System.out.println("  ^^^^^ ^^^^^^^^^^^^^^^^^^^^^");
+	    	System.out.println("");
+	    	System.out.println("    ^^^^      ^^^^     ^^^    ^^");
+	    	System.out.println("         ^^^^      ^^^");
+	    }
+
 }

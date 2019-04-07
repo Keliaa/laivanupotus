@@ -1,15 +1,17 @@
 package test.syotetestit;
 
-import org.laivanupotus.apuluokat.SyoteApu;
+import org.laivanupotus.apuluokat.Apu;
 
 import test.Testi;
 
 public class SyotteenTarkistusTesti extends Testi {
+	
+	Apu apuri = new Apu();
 
 	public void testaaOikeaSyote() {
 		String ruutu = "b1";
 				
-		boolean arvo = SyoteApu.tarkistaSyote(ruutu);
+		boolean arvo = apuri.tarkistaSyote(ruutu);
 
 		assert arvo == true : "oikea syˆte ei mennyt l‰pi";
 
@@ -18,7 +20,7 @@ public class SyotteenTarkistusTesti extends Testi {
 	public void testaaVaaraKirjain() {
 		String ruutu = "T1";
 				
-		boolean arvo = SyoteApu.tarkistaSyote(ruutu);
+		boolean arvo = apuri.tarkistaSyote(ruutu);
 
 		assert arvo == false : "v‰‰r‰ kirjain meni l‰pi";
 
@@ -27,7 +29,7 @@ public class SyotteenTarkistusTesti extends Testi {
 	public void testaaVaaraPituus() {
 		String ruutu = "a33";
 				
-		boolean arvo = SyoteApu.tarkistaSyote(ruutu);
+		boolean arvo = apuri.tarkistaSyote(ruutu);
 
 		assert arvo == false : "v‰‰r‰ pituus meni l‰pi";
 
@@ -36,7 +38,7 @@ public class SyotteenTarkistusTesti extends Testi {
 	public void testaaVaarinpain() {
 		String ruutu = "5c";
 				
-		boolean arvo = SyoteApu.tarkistaSyote(ruutu);
+		boolean arvo = apuri.tarkistaSyote(ruutu);
 
 		assert arvo == false : "v‰‰rin p‰in meni l‰pi";
 
@@ -45,7 +47,7 @@ public class SyotteenTarkistusTesti extends Testi {
 	public void testaaKirjaimet() {
 		String ruutu = "ga";
 				
-		boolean arvo = SyoteApu.tarkistaSyote(ruutu);
+		boolean arvo = apuri.tarkistaSyote(ruutu);
 
 		assert arvo == false : "Kirjaimet meni l‰pi";
 
