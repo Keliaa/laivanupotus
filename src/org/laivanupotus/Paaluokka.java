@@ -31,6 +31,9 @@ public class Paaluokka {
 		Lauta lauta1 = null;
 		Lauta lauta2 = null;
 		
+		apuri.asetaVaikeustaso(pelaaja1, pelaaja2);
+		apuri.ladataankoPeli(pelaaja1, pelaaja2);
+		
 		if(lataa) {
 			apuri.lataaLauta(lauta1, lauta2, pelaaja1, pelaaja2);
 		} else {
@@ -39,9 +42,6 @@ public class Paaluokka {
 			lauta2 = new Lauta();
 			apuri.viimeisteleLaudanLuonti(lauta1, lauta2, pelaaja1, pelaaja2);
 		}
-		
-		apuri.asetaVaikeustaso(pelaaja1, pelaaja2);
-		apuri.ladataankoPeli(pelaaja1, pelaaja2);	
 		
 		apuri.aloitaPeli(lauta1, lauta2, pelaaja1, pelaaja2);
 	}
