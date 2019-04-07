@@ -28,12 +28,20 @@ public class Paaluokka {
 		else pelaaja2 = new Tekoaly("Tekoäly 2");
 		
 		//Luodaan laudat
-		Lauta lauta1 = new Lauta();
-		Lauta lauta2 = new Lauta();
+		Lauta lauta1 = null;
+		Lauta lauta2 = null;
+		
+		if(lataa) {
+			apuri.lataaLauta(lauta1, lauta2, pelaaja1, pelaaja2);
+		} else {
+			//luodaan laudat
+			lauta1 = new Lauta();
+			lauta2 = new Lauta();
+			apuri.viimeisteleLaudanLuonti(lauta1, lauta2, pelaaja1, pelaaja2);
+		}
 		
 		apuri.asetaVaikeustaso(pelaaja1, pelaaja2);
 		apuri.ladataankoPeli(pelaaja1, pelaaja2);	
-		apuri.lataaLauta(lauta1, lauta2, pelaaja1, pelaaja2);
 		
 		apuri.aloitaPeli(lauta1, lauta2, pelaaja1, pelaaja2);
 	}

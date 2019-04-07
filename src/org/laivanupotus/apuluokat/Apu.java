@@ -135,31 +135,31 @@ public class Apu {
 	//Lataa laudan tai luo sellaisen riippuen siit‰, onko lauta tallennettu
 	public void lataaLauta(Lauta lauta1, Lauta lauta2, Pelaaja pelaaja1, Pelaaja pelaaja2) {
 		//Lautojen asettelua
-		if(Paaluokka.lataa) {
-			Lataus lataaja = new Lataus();
+		Lataus lataaja = new Lataus();
 					
-			lauta1 = lataaja.lataaLaudanTila(false);
-			lauta2 = lataaja.lataaLaudanTila(true);
+		lauta1 = lataaja.lataaLaudanTila(false);
+		lauta2 = lataaja.lataaLaudanTila(true);
 					
-			//Asetetaan laivat laudalle ja listoihin
-			for (Laiva i : lataaja.lataaLaivojenTila(false)) {
-				lauta1.asetaLaivaLaudalle(i);
-				pelaaja1.annaLaivaLista().add(i);
-				pelaaja1.asetaLaivaLista(lataaja.lataaLaivojenTila(false));
-			}
-			for (Laiva i : lataaja.lataaLaivojenTila(true)) {
-				lauta2.asetaLaivaLaudalle(i);
-				pelaaja2.annaLaivaLista().add(i);
-				pelaaja2.asetaLaivaLista(lataaja.lataaLaivojenTila(true));
-			}
-				Paaluokka.lataa = false;
-			} else {				
-				//asetetaan laivat laudalle
-				if (pelaaja1 instanceof Tekoaly) ((Tekoaly)pelaaja1).arvoLaivat(lauta1);
-				else ((Ihmispelaaja)pelaaja1).asetaLaivat(lauta1);
-				if (pelaaja2 instanceof Tekoaly) ((Tekoaly)pelaaja2).arvoLaivat(lauta2);
-				else ((Ihmispelaaja)pelaaja2).asetaLaivat(lauta2);
-			}
+		//Asetetaan laivat laudalle ja listoihin
+		for (Laiva i : lataaja.lataaLaivojenTila(false)) {
+			lauta1.asetaLaivaLaudalle(i);
+			pelaaja1.annaLaivaLista().add(i);
+			pelaaja1.asetaLaivaLista(lataaja.lataaLaivojenTila(false));
+		}
+		for (Laiva i : lataaja.lataaLaivojenTila(true)) {
+			lauta2.asetaLaivaLaudalle(i);
+			pelaaja2.annaLaivaLista().add(i);
+			pelaaja2.asetaLaivaLista(lataaja.lataaLaivojenTila(true));
+		}
+		Paaluokka.lataa = false;
+	}
+	
+	public void viimeisteleLaudanLuonti(Lauta lauta1, Lauta lauta2, Pelaaja pelaaja1, Pelaaja pelaaja2) {
+		//asetetaan laivat laudalle
+		if (pelaaja1 instanceof Tekoaly) ((Tekoaly)pelaaja1).arvoLaivat(lauta1);
+		else ((Ihmispelaaja)pelaaja1).asetaLaivat(lauta1);
+		if (pelaaja2 instanceof Tekoaly) ((Tekoaly)pelaaja2).arvoLaivat(lauta2);
+		else ((Ihmispelaaja)pelaaja2).asetaLaivat(lauta2);
 	}
 	
 	//Piirt‰‰ ascii laivan
