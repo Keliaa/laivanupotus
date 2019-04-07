@@ -11,9 +11,9 @@ import org.laivanupotus.logiikka.Lauta;
 
 public class Lataus {
 	
-	private static final String filepath=".\\tallennukset\\";
+	private final String filepath=".\\tallennukset\\";
 	 
-    public static Lauta lataaLaudanTila(boolean tekoaly) {
+    public Lauta lataaLaudanTila(boolean tekoaly) {
  
     	Lataus lataus = new Lataus();
     	Lauta lauta = null;
@@ -27,7 +27,7 @@ public class Lataus {
     
     @SuppressWarnings("unchecked")
     //eri polut riippuen onko tekoäly vai ei
-	public static ArrayList<Laiva> lataaLaivojenTila(boolean tekoaly) {
+	public ArrayList<Laiva> lataaLaivojenTila(boolean tekoaly) {
     	 
     	Lataus lataus = new Lataus();
     	ArrayList<Laiva> laiva = null;

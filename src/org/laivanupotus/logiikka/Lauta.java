@@ -136,7 +136,7 @@ public class Lauta implements Serializable {
 	}
 	
 	//Tarkastaa onko laudan pelaaja hävinnyt pelin
-	public boolean onkoHavinnyt() {
+	public boolean onkoHavinnyt(int pelaajaNumero) {
 		boolean havitty = true;
 		for (int i=0; i<lauta.length; i++) {
 			for (int j=0; j<lauta.length; j++) {
@@ -144,6 +144,7 @@ public class Lauta implements Serializable {
 					havitty = false;
 			}
 		}
+		if (havitty) System.out.println("Pelaaja " + pelaajaNumero + " voitti pelin!");
 		return havitty;
 	}
 }

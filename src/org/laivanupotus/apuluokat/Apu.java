@@ -1,6 +1,11 @@
 package org.laivanupotus.apuluokat;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import org.laivanupotus.logiikka.Lauta;
+import org.laivanupotus.pelaaja.Pelaaja;
+import org.laivanupotus.tallennus.Tallennus;
+
 import java.util.Scanner;
 
 
@@ -77,6 +82,16 @@ public class Apu {
 		else if (s.toLowerCase().equals("j")) palautus = 9;
 		else System.out.println("mit‰s mit‰s?? Palautetaan 0");
 		return palautus;
+	}
+	
+	//Tallennetaan peli
+	public void tallennaPeli(Pelaaja pelaaja1, Pelaaja pelaaja2, Lauta lauta1, Lauta lauta2) {
+		Tallennus tallentaja = new Tallennus();
+		
+		tallentaja.tallennaLaivojenTila(pelaaja1.annaLaivaLista(), false);
+		tallentaja.tallennaLaivojenTila(pelaaja2.annaLaivaLista(), true);
+		tallentaja.tallennaLaudanTila(lauta1, false);
+		tallentaja.tallennaLaudanTila(lauta2, true);
 	}
 	
 	//Piirt‰‰ ascii laivan

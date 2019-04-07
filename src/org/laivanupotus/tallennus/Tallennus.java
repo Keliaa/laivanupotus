@@ -9,11 +9,11 @@ import org.laivanupotus.logiikka.Lauta;
 
 public class Tallennus {
 	
-	private static final String filepath=".\\tallennukset\\";
+	private final String filepath=".\\tallennukset\\";
 	
 	//tallentaa laudan
     //eri polut riippuen onko tekoäly vai ei
-	public static void tallennaLaudanTila(Lauta lauta, boolean tekoaly) {
+	public void tallennaLaudanTila(Lauta lauta, boolean tekoaly) {
 		if (tekoaly)
 			WriteObjectToFile(lauta, "LautaTeko");
 		else
@@ -22,7 +22,7 @@ public class Tallennus {
 	
 	//tallentaa laivat
     //eri polut riippuen onko tekoäly vai ei
-	public static void tallennaLaivojenTila(ArrayList<Laiva> laiva, boolean tekoaly) {
+	public void tallennaLaivojenTila(ArrayList<Laiva> laiva, boolean tekoaly) {
 		if(tekoaly)
 			WriteObjectToFile(laiva, "LaivaTeko");
 		else
@@ -34,7 +34,7 @@ public class Tallennus {
 	 * Ja muokkasin vähän
 	 * @param serObj
 	 */
-	public static void WriteObjectToFile(Object serObj, String nimi) {
+	public void WriteObjectToFile(Object serObj, String nimi) {
 		 
         try {
  

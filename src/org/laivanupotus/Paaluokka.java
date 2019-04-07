@@ -7,7 +7,6 @@ import org.laivanupotus.pelaaja.Ihmispelaaja;
 import org.laivanupotus.pelaaja.Pelaaja;
 import org.laivanupotus.pelaaja.tekoaly.Tekoaly;
 import org.laivanupotus.tallennus.Lataus;
-import org.laivanupotus.tallennus.Tallennus;
 
 public class Paaluokka {
 	
@@ -43,19 +42,21 @@ public class Paaluokka {
 		
 		//Lautojen asettelua
 		if(lataa) {
-			lauta1 = Lataus.lataaLaudanTila(true);
-			lauta2 = Lataus.lataaLaudanTila(false);
+			Lataus lataaja = new Lataus();
+			
+			lauta1 = lataaja.lataaLaudanTila(false);
+			lauta2 = lataaja.lataaLaudanTila(true);
 			
 			//Asetetaan laivat laudalle ja listoihin
-			for (Laiva i : Lataus.lataaLaivojenTila(false)) {
+			for (Laiva i : lataaja.lataaLaivojenTila(false)) {
 				lauta1.asetaLaivaLaudalle(i);
 				pelaaja1.annaLaivaLista().add(i);
-				pelaaja1.asetaLaivaLista(Lataus.lataaLaivojenTila(false));
+				pelaaja1.asetaLaivaLista(lataaja.lataaLaivojenTila(false));
 			}
-			for (Laiva i : Lataus.lataaLaivojenTila(true)) {
+			for (Laiva i : lataaja.lataaLaivojenTila(true)) {
 				lauta2.asetaLaivaLaudalle(i);
 				pelaaja2.annaLaivaLista().add(i);
-				pelaaja2.asetaLaivaLista(Lataus.lataaLaivojenTila(true));
+				pelaaja2.asetaLaivaLista(lataaja.lataaLaivojenTila(true));
 			}
 			lataa = false;
 		} else {
@@ -77,32 +78,17 @@ public class Paaluokka {
 		while(true) {
 			if (pelaaja1 instanceof Ihmispelaaja) ((Ihmispelaaja)pelaaja1).vuoro(lauta1, lauta2, pelaaja2);
 			else ((Tekoaly)pelaaja1).vuoro(lauta1, lauta2, pelaaja2);
-			
-			if (lauta2.onkoHavinnyt()) {
-				System.out.println("Pelaaja 1 voitti pelin!");
-				break;
-			}
+			if (lauta2.onkoHavinnyt(1)) break;
 			
 			if (pelaaja2 instanceof Ihmispelaaja) ((Ihmispelaaja)pelaaja2).vuoro(lauta2, lauta1, pelaaja1);
 			else ((Tekoaly)pelaaja2).vuoro(lauta2, lauta1, pelaaja1);
-			if (lauta1.onkoHavinnyt()) {
-				System.out.println("Pelaaja 2 voitti pelin!");
-				break;
-			}
+			if (lauta1.onkoHavinnyt(2)) break;
 			
 			if(tallenna) {
-				tallennaPeli(pelaaja1, pelaaja2, lauta1, lauta2);
+				apuri.tallennaPeli(pelaaja1, pelaaja2, lauta1, lauta2);
 				tallenna = false;
 			}
 			
 		}
-	}
-
-	//Tallennetaan peli
-	public static void tallennaPeli(Pelaaja ihmispelaaja, Pelaaja tekoaly, Lauta lauta, Lauta tekolauta) {
-		Tallennus.tallennaLaivojenTila(ihmispelaaja.annaLaivaLista(), false);
-		Tallennus.tallennaLaivojenTila(tekoaly.annaLaivaLista(), true);
-		Tallennus.tallennaLaudanTila(lauta, false);
-		Tallennus.tallennaLaudanTila(tekolauta, true);
 	}
 }
