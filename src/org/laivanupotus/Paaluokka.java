@@ -3,6 +3,7 @@ package org.laivanupotus;
 import org.laivanupotus.logiikka.Laiva;
 import org.laivanupotus.logiikka.Lauta;
 import org.laivanupotus.pelaaja.Ihmispelaaja;
+import org.laivanupotus.pelaaja.Pelaaja;
 import org.laivanupotus.pelaaja.tekoaly.Tekoaly;
 import org.laivanupotus.tallennus.Lataus;
 import org.laivanupotus.tallennus.Tallennus;
@@ -18,16 +19,16 @@ public class Paaluokka {
 		piirraLaiva();
 		
 		//luodaan pelaaajat
-		Ihmispelaaja ihmispelaaja = new Ihmispelaaja("Testipelaaja");
-		Tekoaly tekoaly = new Tekoaly("Tekoaly");
+		Pelaaja ihmispelaaja = new Ihmispelaaja("Testipelaaja");
+		Pelaaja tekoaly = new Tekoaly("Tekoaly");
 		
 		//Luodaan laudat
 		Lauta tekoLauta = null;
 		Lauta lauta = null;
 		
 		//Asetetaan tekoälyn vaikeusaste
-		tekoaly.asetaVaikeus();
-		ihmispelaaja.kysyLadataankoPeli();
+		((Tekoaly)tekoaly).asetaVaikeus();
+		((Ihmispelaaja)ihmispelaaja).kysyLadataankoPeli();
 		
 		//Lautojen asettelua
 		if(lataa) {
@@ -54,7 +55,7 @@ public class Paaluokka {
 			tekoLauta = new Lauta();
 			
 			//asetetaan laivat - pelaaja
-			ihmispelaaja.asetaLaivat(lauta);
+			((Ihmispelaaja)ihmispelaaja).asetaLaivat(lauta);
 			
 			//asetetaan laivat - tekoäly
 			tekoaly.arvoLaivat(tekoLauta);
@@ -65,13 +66,13 @@ public class Paaluokka {
 		//Pelataan!
 		while(true) {
 			lauta.tulostaLauta();
-			ihmispelaaja.vuoro(lauta, tekoLauta, tekoaly);
+			((Ihmispelaaja)ihmispelaaja).vuoro(lauta, tekoLauta, tekoaly);
 			if (tekoLauta.onkoHavinnyt()) {
 				System.out.println("Voitit pelin!");
 				break;
 			}
 			
-			tekoaly.vuoro(tekoLauta, lauta, ihmispelaaja);
+			((Tekoaly)tekoaly).vuoro(tekoLauta, lauta, ihmispelaaja);
 			tekoLauta.tulostaPiiloLauta();
 			
 			if (lauta.onkoHavinnyt()) {
@@ -88,7 +89,7 @@ public class Paaluokka {
 	}
 
 	//Tallennetaan peli
-	public static void tallennaPeli(Ihmispelaaja ihmispelaaja, Tekoaly tekoaly, Lauta lauta, Lauta tekolauta) {
+	public static void tallennaPeli(Pelaaja ihmispelaaja, Pelaaja tekoaly, Lauta lauta, Lauta tekolauta) {
 		Tallennus.tallennaLaivojenTila(ihmispelaaja.annaLaivaLista(), false);
 		Tallennus.tallennaLaivojenTila(tekoaly.annaLaivaLista(), true);
 		Tallennus.tallennaLaudanTila(lauta, false);

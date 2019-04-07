@@ -18,7 +18,7 @@ public class Tekoaly extends Pelaaja {
 	}
 	
 	//Ampuu satunnaiseen ruutuun
-		public void vuoro(Lauta tekoLauta, Lauta lauta, Ihmispelaaja ihmispelaaja) {
+		public void vuoro(Lauta tekoLauta, Lauta lauta, Pelaaja ihmispelaaja) {
 			
 			Random rand = new Random();
 			int[] kohderuutu = new int[2];
@@ -47,9 +47,9 @@ public class Tekoaly extends Pelaaja {
 		}
 		
 		//Asettaa ruudun merkiksi "X" ja tarkistaa oliko osuma
-		public void ammu(int[] ruutu, Lauta lauta, Ihmispelaaja ihmispelaaja) {
+		public void ammu(int[] ruutu, Lauta lauta, Pelaaja ihmispelaaja) {
 			lauta.asetaAmmuttuRuutu(ruutu);
-			ihmispelaaja.tarkastaLaivat(ruutu);
+			((Ihmispelaaja)ihmispelaaja).tarkastaLaivat(ruutu);
 		}
 		
 		//Tarkastaa osuttiinko yhteenkään laivaan, ja kommentoidaan asianmukaisesti

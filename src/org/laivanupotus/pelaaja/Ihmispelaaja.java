@@ -136,7 +136,7 @@ public class Ihmispelaaja extends Pelaaja {
 	
 	//Pyyt‰‰ ruudun, tarkastaa voiko ruutuun ampua, jos voi niin ampuu
 	@SuppressWarnings("resource")
-	public void vuoro(Lauta lauta, Lauta tekoLauta, Tekoaly tekoaly) {
+	public void vuoro(Lauta lauta, Lauta tekoLauta, Pelaaja tekoaly) {
 		String kohderuutu = "";
 		
 		while(true) {
@@ -172,9 +172,9 @@ public class Ihmispelaaja extends Pelaaja {
 	
 	//Asettaa ruudun merkiksi "X"
 	//Tsekkaa osumat ja uponneet ja kommentoi asianmukaisesti
-	public void ammu(int[] ruutu, Lauta tekoLauta, Tekoaly tekoaly) {
+	public void ammu(int[] ruutu, Lauta tekoLauta, Pelaaja tekoaly) {
 		tekoLauta.asetaAmmuttuRuutu(ruutu);
-		tekoaly.tarkastaLaivat(ruutu);
+		((Tekoaly)tekoaly).tarkastaLaivat(ruutu);
 	}
 	
 	//Tarkastaa osuiko teko‰ly yhteenk‰‰n laivaan. Jos osui, asetetaan laivaan osuma
