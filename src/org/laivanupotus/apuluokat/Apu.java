@@ -133,13 +133,7 @@ public class Apu {
 	}
 	
 	//Lataa laudan tai luo sellaisen riippuen siitä, onko lauta tallennettu
-	public void lataaLauta(Lauta lauta1, Lauta lauta2, Pelaaja pelaaja1, Pelaaja pelaaja2) {
-		//Lautojen asettelua
-		Lataus lataaja = new Lataus();
-					
-		lauta1 = lataaja.lataaLaudanTila(false);
-		lauta2 = lataaja.lataaLaudanTila(true);
-					
+	public void lataaLaudat(Lauta lauta1, Lauta lauta2, Pelaaja pelaaja1, Pelaaja pelaaja2, Lataus lataaja) {		
 		//Asetetaan laivat laudalle ja listoihin
 		for (Laiva i : lataaja.lataaLaivojenTila(false)) {
 			lauta1.asetaLaivaLaudalle(i);

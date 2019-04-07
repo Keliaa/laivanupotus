@@ -1,7 +1,6 @@
 package org.laivanupotus;
 
 import org.laivanupotus.apuluokat.Apu;
-import org.laivanupotus.logiikka.Laiva;
 import org.laivanupotus.logiikka.Lauta;
 import org.laivanupotus.pelaaja.Ihmispelaaja;
 import org.laivanupotus.pelaaja.Pelaaja;
@@ -35,7 +34,12 @@ public class Paaluokka {
 		apuri.ladataankoPeli(pelaaja1, pelaaja2);
 		
 		if(lataa) {
-			apuri.lataaLauta(lauta1, lauta2, pelaaja1, pelaaja2);
+			//Lautojen asettelua
+			Lataus lataaja = new Lataus();
+						
+			lauta1 = lataaja.lataaLaudanTila(false);
+			lauta2 = lataaja.lataaLaudanTila(true);
+			apuri.lataaLaudat(lauta1, lauta2, pelaaja1, pelaaja2, lataaja);
 		} else {
 			//luodaan laudat
 			lauta1 = new Lauta();
